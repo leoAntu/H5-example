@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<style>
+
+    table{
+        width: 600px;
+        border: 2px solid orangered;
+    }
+
+    thead {
+        background-color: red;
+    }
+
+    #app {
+        margin: 50px auto;
+        width: 600px;
+    }
+
+    fieldset{
+        border: 2px solid orangered;
+    }
+
+    table{
+        margin-top: 20px;
+    }
+</style>
+<body>
+
+<div id="app">
+
+
+    <!--<form>-->
+        <fieldset>
+            <legend>拇指哥录入系统</legend>
+
+            <div>
+                <label>姓名：</label>
+                <input type="text" placeholder="请输入姓名" v-model="newStudent.name">
+            </div>
+            <div>
+                <label>年龄：</label>
+                <input type="text" placeholder="请输入年龄" v-model="newStudent.age">
+            </div>
+
+            <div>
+                <label>性别：</label>
+                <select v-model="newStudent.sex">
+                    <option value="男">男</option>
+                    <option value="女">女</option>
+                </select>
+
+            </div>
+
+            <div>
+                <label>手机：</label>
+                <input type="text" placeholder="请输入手机号码" v-model="newStudent.phone">
+            </div>
+
+            <div>
+                <button @click="createNewUser()">创建新用户</button>
+            </div>
+
+        </fieldset>
+    <!--</form>-->
+
+    <br>
+
+    <table>
+        <thead>
+        <tr>
+            <td>姓名</td>
+            <td>年龄</td>
+            <td>性别</td>
+            <td>手机</td>
+            <td>删除</td>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="(p,index) in persons">
+            <td>{{p.name}}</td>
+            <td>{{p.age}}</td>
+            <td>{{p.sex}}</td>
+            <td>{{p.phone}}</td>
+            <td><button @click="deleteStudent(index)">删除</button></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+
+<script src="js/vue.js"></script>
+<script>
+
+
+    let vm = new Vue({
+        el: "#app",
+        components: {},
+        data() {
+            return {
+                msg: 'hello world!',
+                persons: [
+                    {name: '张三', age: '20', sex: '男', phone: '13811111111'},
+                    {name: '李四', age: '20', sex: '男', phone: '13811111111'},
+                    {name: '王五', age: '20', sex: '男', phone: '13811111111'},
+                    {name: '赵六', age: '20', sex: '男', phone: '13811111111'}
+                ],
+                newStudent: {
+                    name: '',
+                    age: '',
+                    sex: '男',
+                    phone: ''
+                }
+
+            }
+        },
+        methods: {
+            createNewUser() {
+
+                if (this.newStudent.name.length == 0) {
+                    alert('请输入姓名');
+                    return
+                }
+                if (this.newStudent.age.length == 0) {
+                    alert('请输入年龄');
+                    return
+                }
+                if (this.newStudent.phone.length < 11) {
+                    alert('请输入正确的电话号码');
+                    return
+                }
+
+
+                let isSame = false;
+                this.persons.forEach((p, index)=>{
+
+                    if (p.name === this.newStudent.name) {
+                        p.age = this.newStudent.age;
+                        p.sex = this.newStudent.sex;
+                        p.phone = this.newStudent.phone;
+                        isSame = true;
+                        return;
+                    }
+
+
+                })
+                if (isSame === false) {
+                    this.persons.unshift(this.newStudent)
+                }
+
+                this.newStudent =  {
+                    name: '',
+                    age: '',
+                    sex: '男',
+                    phone: ''
+                }
+            },
+
+            deleteStudent(index) {
+
+                this.persons.splice(index,1);
+            }
+        },
+        computed: {},
+        watch: {},
+        mounted() {
+
+        },
+        props: {
+            slides: {
+                type: Array,
+                default: []
+            }
+        },
+        filters: {},
+        created() {
+        }
+    })
+
+
+
+</script>
+</body>
+</html>

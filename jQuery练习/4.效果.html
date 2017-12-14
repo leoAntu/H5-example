@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<style>
+
+    *{
+    }
+</style>
+<body>
+
+
+<div class="animate">
+    <div id="box" style="background:#98bf21;height:100px;width:100px;margin:6px;">
+    </div>
+    <button class="btn1">Animate</button>
+    <button class="btn2">Reset</button>
+</div>
+
+<br>
+<br>
+<div>
+    <p id="p1">如果点击“隐藏”按钮，我就会消失。</p>
+    <button id="hide" type="button">隐藏</button>
+    <button id="show" type="button">显示</button>
+</div>
+<br>
+<br>
+
+<div>
+    <p>
+        <button id="start">Start Animation</button>
+        <button id="stop">Stop Animation</button>
+    </p>
+    <div id="box1" style="background:#98bf21;height:100px;width:100px;position:relative">
+    </div>
+</div>
+<br>
+<br>
+
+<div>
+    <p id="fade">This is a fadeIn.</p>
+    <button class="btn3">Hide</button>
+    <button class="btn4">Show</button>
+
+</div>
+<br>
+<br>
+
+<div>
+    <p id="slideDown">This is a slideDown.</p>
+    <button class="btn5">Hide</button>
+    <button class="btn6">Show</button>
+</div>
+
+<br>
+<br>
+<div>
+    <p id="slideToggle">This is a slideToggle.</p>
+    <button class="btn7">Hide</button>
+</div>
+<br>
+<br>
+
+<div>
+    <p>
+        <button id="start1">Start Animation</button>
+        <button id="stop1">Stop Animation</button>
+    </p>
+    <div id="box2" style="background:#98bf21;height:100px;width:100px;position:relative">
+
+    </div>
+</div>
+</body>
+
+<script src="js/jquery-3.2.1.js"></script>
+
+<script>
+
+    $(function () {
+
+//        jQuery 效果 - animate() 方法
+        var css = {height: '300px'}
+        $(".btn1").click(function () {
+            $('#box').animate(css,rowBack)
+        })
+
+        /*无限循环*/
+        function rowBack() {
+            if (css.height == '100px') {
+                css.height = '300px'
+            } else if (css.height == '300px') {
+                css.height = '100px'
+            }
+            $('#box').animate(css,rowBack)
+        }
+
+
+        $(".btn2").click(function () {
+            $('#box').animate({height:'100px'})
+        })
+
+//        jQuery 效果 - 隐藏和显示 和toggle() 一样
+
+        $("#hide").click(function () {
+            $("#p1").hide(1000)
+        })
+        $("#show").click(function () {
+            $("#p1").show(1000)
+        })
+
+//        clearQueue 与 stop() 方法不同，（只适用于动画），clearQueue() 能够清除任何排队的函数（通过 .queue() 方法添加到通用 jQuery 队列的任何函数）。
+        $("#start").click(function () {
+
+            /*delay 延迟运行*/
+            $("#box1").animate({height:300},"slow");
+            $("#box1").animate({width:300},"slow");
+            $("#box1").animate({height:100},"slow");
+            $("#box1").animate({width:100},"slow");
+        })
+
+
+        $("#stop").click(function(){
+            $("#box1").clearQueue();
+        });
+
+//        delay()	 对被选元素的所有排队函数（仍未运行）设置延迟
+        $("#start").click(function () {
+
+            $("#box1").delay(2000).animate({height:300},"slow");
+
+        })
+
+
+//        jQuery 效果 - fadeIn() fadeOut()		逐渐改变被选元素的不透明度
+        $(".btn3").click(function () {
+            $("#fade").fadeOut();
+        })
+        $(".btn4").click(function () {
+            $("#fade").fadeIn();
+        })
+
+//        fadeTo()
+
+        $(".btn4").click(function () {
+            $("#fade").fadeTo(1000,0.4);
+        })
+
+//        slideDown() slideUp()    	通过调整高度来滑动显示/隐藏被选元素
+        $(".btn5").click(function () {
+           $('#slideDown').slideUp()
+        })
+        $(".btn6").click(function () {
+            $('#slideDown').slideDown()
+        })
+
+
+//        jQuery 效果 - slideToggle() 方法
+        $(".btn7").click(function () {
+            $('#slideToggle').slideToggle()
+        })
+
+//        jQuery 效果 - stop() 方法 stop() 方法停止当前正在运行的动画。执行的时候完成当前动画才会停止， clearQueue 是立即停止
+
+        $("#start1").click(function () {
+            $("#box2").animate({height:300},2000);
+            $("#box2").animate({height:100},2000);
+        })
+
+        $("#stop1").click(function () {
+            $('#box2').stop()
+//            $('#box2').clearQueue()
+        })
+
+    });
+
+
+</script>
+</html>

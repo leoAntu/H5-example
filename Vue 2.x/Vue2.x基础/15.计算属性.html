@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+
+    <p>初始值：{{msg}}</p>
+    <p>反转值：{{msg.split('').reverse('').join('')}}</p>
+    <p>函数调用：{{reverseStr()}}</p>
+    <p>计算属性：{{reverse}}</p>
+
+
+
+</div>
+
+
+<script src="js/vue.js"></script>
+<script>
+
+    let vm = new Vue({
+        el: "#app",
+        components: {},
+        data() {
+            return {
+                msg: 'hello world!'
+            }
+        },
+        methods: {
+            reverseStr() {
+
+                return this.msg.split('').reverse('').join('');
+            }
+        },
+        //计算选项,就是get方法
+        computed: {
+            reverse() {
+                return this.msg.split('').reverse('').join('');
+            }
+        },
+        watch: {},
+        mounted() {
+
+        },
+        props: {
+            slides: {
+                type: Array,
+                default: []
+            }
+        },
+        filters: {},
+        created() {
+        }
+    })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<style>
+
+    table{
+        width: 600px;
+        border: 2px solid orangered;
+    }
+
+    thead {
+        background-color: red;
+    }
+</style>
+<body>
+
+<div id="app">
+
+    <table>
+        <thead>
+            <tr>
+                <td>姓名</td>
+                <td>年龄</td>
+                <td>性别</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="p in persons">
+                <td>{{p.name}}</td>
+                <td>{{p.age}}</td>
+                <td>{{p.sex}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<script src="js/vue.js"></script>
+<script>
+
+    let vm = new Vue({
+        el: "#app",
+        data: {
+            persons: [
+                {name: "zhangsna", age:19, sex:'nan'},
+                {name: "lisi", age:29, sex:'nan'},
+                {name: "wangwu", age:49, sex:'nan'},
+                {name: "liqi", age:78, sex:'nan'}
+            ]
+        }
+    })
+
+</script>
+</body>
+</html>

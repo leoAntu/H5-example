@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+
+    <!--满足条件就显示，不满足就不显示-->
+    <p v-show="show">要显示出来</p>
+    <p v-show="hide">不要显示出来</p>
+    <p v-show="height>1.55">身高：{{height}}</p>
+    <p v-show="height1>1.55">身高：{{height}}</p>
+
+</div>
+
+
+<script src="js/vue.js"></script>
+<script>
+
+    let vm = new Vue({
+        el: "#app",
+        data: {
+            message: "hello,world",
+            show: true,
+            hide: false,
+
+            height: 1.68,
+            height1: 1.55
+        }
+    })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<style>
+    .active {
+        background-color: orangered;
+        font-size: 20px;
+        color: #fff;
+    }
+</style>
+<body>
+
+<div id="app">
+
+    <ul>
+        <li v-for="(c,index) in colleges" :class="index === selectedIndex ? 'active' :''">{{c}}</li>
+    </ul>
+
+    <p :style="{color: color}">今天天气真好
+
+</div>
+
+
+<script src="js/vue.js"></script>
+<script>
+
+    let vm = new Vue({
+        el: "#app",
+        data: {
+            colleges: [
+                'ios',
+                'vr',
+                "h5",
+                'java'
+            ],
+            selectedIndex: 0,
+
+            color: 'red'
+        }
+    })
+
+</script>
+</body>
+</html>

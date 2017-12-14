@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,
+maximum-scale=1, user-scalable=no">
+    <!--bootstrap-->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<style>
+    .a {
+        height: 100px;
+        background-color: #eee;
+        border:1px solid #ccc;
+    }
+</style>
+<body >
+
+<!--一.列表组组件 列表组组件用于显示一组列表的组件。 -->
+<!--//基本实例-->
+<ul class="list-group">
+    <li class="list-group-item">1.这是起始</li>
+    <li class="list-group-item">2.这是第二条数据</li>
+    <li class="list-group-item">3.这是第三排信息</li>
+    <li class="list-group-item">4.这是末尾</li>
+    <li class="list-group-item">5.这是起始
+        <span class="badge">10</span>
+    </li>
+</ul>
+
+<br>
+
+<!--//链接和首选-->
+<div class="list-group">
+    <a href="#" class="list-group-item active">1.这是起始
+        <span class="badge">10</span>
+    </a>
+    <a href="#" class="list-group-item">2.这是第二条数据</a>
+    <a href="#" class="list-group-item">3.这是第三排信息</a>
+    <a href="#" class="list-group-item">4.这是末尾</a>
+</div>
+
+<br>
+<!--//按钮式列表-->
+<div class="list-group">
+    <button class="list-group-item active">1.这是起始 <span class="badge">10</span></button>
+    <button class="list-group-item">2.这是第二条数据</button>
+    <button class="list-group-item list-group-item-success">3.这是第三排信息</button>
+    <!--//设置项目被禁用 class="list-group-item disabled"-->
+
+    <button class="list-group-item disabled">4.这是末尾</button>
+</div>
+
+
+<!--//定制内容-->
+<div class="list-group">
+    <a href="#" class="list-group-item active">
+        <h4>内容标题</h4>
+        <p class="list-group-item-text">这里是相关内容详情!</p>
+    </a>
+    <a href="#" class="list-group-item">
+        <h4>内容标题</h4>
+        <p class="list-group-item-text">这里是相关内容详情!</p> </a>
+    <a href="#" class="list-group-item">
+        <h4>内容标题</h4>
+        <p class="list-group-item-text">这里是相关内容详情!</p>
+    </a>
+</div>
+
+
+
+<!--二.面板组件-->
+<!--面板组件就是一个存放内容的容器组件。-->
+<!--//基本实例-->
+<div class="panel panel-default">
+    <div class="panel-body">
+        这里是详细内容区
+    </div>
+</div>
+
+
+
+<!--//带标题容器的面板-->
+<div class="panel panel-default">
+    <div class="panel-heading">
+        面板标题
+    </div>
+    <div class="panel-body">
+        这里是详细内容区!
+    </div>
+</div>
+
+<!--//也可以设置标题元素-->
+<div class="panel-heading">
+    <h3 class="panel-title">面板标题</h3> </div>
+<!--//带注脚的面板-->
+<div class="panel-footer">
+    这里是底部
+</div>
+
+
+<!--//表格类面板-->
+<div class="panel panel-default">
+    <div class="panel-heading">
+        表格标题
+    </div>
+    <div class="panel-body">
+        <p>这里是表格标题的详细内容!</p> </div>
+    <table class="table">
+        <tr>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+         </tr>
+    </table>
+</div>
+
+
+
+<!--//列表类面板-->
+<div class="panel panel-default">
+    <div class="panel-heading">
+        表格标题
+    </div>
+    <div class="panel-body">
+        <p>这里是表格标题的详细内容!</p>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item">1.这里是首页</li>
+        <li class="list-group-item">2.这里是第二个项目</li>
+        <li class="list-group-item">3.这里是第三个项目</li>
+        <li class="list-group-item">4.这里是第四个项目</li>
+    </ul>
+</div>
+
+
+
+<script src="bootstrap/js/jquery-3.2.1.js"></script>
+<script src="bootstrap/js/bootstrap.js"></script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+
+    <parent></parent>
+    <parent1></parent1>
+
+
+</div>
+
+
+<script src="../js/vue.js"></script>
+<script>
+
+    //1.组件构造器
+
+    //1.1 创建子组件
+    let child1 = Vue.extend({
+
+        template: `
+            <div>
+                <input type="text">
+                 <p>今天已经是冬天了</p>
+            </div>
+
+        `
+    });
+
+    let child2 = Vue.extend({
+
+        template: `
+            <div>
+                <input type="color">
+                 <p>今天已经是夏天了</p>
+            </div>
+
+        `
+    });
+
+
+
+    // 2.父组件的全局的构造器
+    Vue.component('parent',{
+        components: {
+            'my-child1': child1,
+            'my-child2': child2
+        },
+        template:`
+              <div>
+                <my-child1></my-child1>
+                <my-child2></my-child2>
+             </div>
+        `
+    })
+
+    //局部父组件的构造器
+    let parent1 = Vue.extend({
+        components: {
+            'my-child1': child1,
+            'my-child2': child2
+        },
+        template:`
+              <div>
+                <my-child1></my-child1>
+                <my-child2></my-child2>
+             </div>
+             `
+    })
+
+    let vm = new Vue({
+        el: "#app",
+        components: {
+            parent1
+        },
+        data() {
+            return {
+                msg: 'hello world!'
+            }
+        },
+        methods: {},
+        computed: {},
+        watch: {},
+        mounted() {
+
+        },
+        props: {
+            slides: {
+                type: Array,
+                default: []
+            }
+        },
+        filters: {},
+        created() {
+        }
+    })
+
+
+
+
+</script>
+</body>
+</html>

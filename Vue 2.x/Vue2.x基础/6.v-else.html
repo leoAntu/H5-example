@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <!--v-if v-else 必须连着一起，或者没效果-->
+    <p v-if="height>1.9">小明身高:{{height}}</p>
+    <!--<p>sdfsdf</p>-->
+    <p v-else>小明身高补足1.9米</p>
+
+</div>
+
+
+<script src="js/vue.js"></script>
+<script>
+
+    let vm = new Vue({
+        el: "#app",
+        data: {
+            height: 1.88
+        }
+    })
+
+</script>
+</body>
+</html>

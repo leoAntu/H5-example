@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+
+    <p v-for="(score, index) in score">{{index + ":" + score}}</p>
+    <p v-for="value in dog">{{value}}</p>
+
+    <p v-for="str in name">{{str}}</p>
+</div>
+
+
+<script src="js/vue.js"></script>
+<script>
+
+    let vm = new Vue({
+        el: "#app",
+        data: {
+           score: [100,87,79,30],
+            dog: {name: "xiaosi", age:10, sex:"男"},
+            name: 'zhangsan'
+        }
+    })
+
+</script>
+</body>
+</html>

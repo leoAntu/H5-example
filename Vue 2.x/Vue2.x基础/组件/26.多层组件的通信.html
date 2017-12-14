@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+
+    <!--多层传递通过props传递数据，必须要动态绑定 :imgsrc 前面加个：单层就不需要，否则报错 -->
+    <my-parent :imgsrc="imgsrc" :title="title"></my-parent>
+
+</div>
+
+
+<!--组件-->
+<template id="my-img">
+    <div>
+        <img :src="imgsrc">
+    </div>
+</template>
+
+<template id="my-title">
+    <div>
+        <h2>{{title}}</h2>
+    </div>
+</template>
+
+
+<template id="my-parent">
+    <div>
+        <ch1 :imgsrc="imgsrc"></ch1>
+        <ch2 :title="title"></ch2>
+    </div>
+</template>
+
+
+<script src="../js/vue.js"></script>
+
+<script>
+
+    <!--子注册组件-->
+
+    let ch1 = Vue.extend({
+        template: '#my-img',
+        props: {
+            imgsrc: ''
+        }
+    })
+
+    let ch2 = Vue.extend({
+        template: '#my-title',
+        props:{
+            title: ''
+        }
+    })
+
+//    父组件，全局注册
+
+    Vue.component('my-parent',{
+        props:{
+            imgsrc: '',
+            title: ''
+        },
+        components:{
+            ch1,
+            ch2
+        },
+        template:'#my-parent'
+    })
+
+
+    let vm = new Vue({
+        el: "#app",
+        components: {},
+        data() {
+            return {
+                title: 'sdfsdfsdf',
+                imgsrc: '../img/img_01.jpg'
+            }
+        },
+        methods: {},
+        computed: {},
+        watch: {},
+        mounted() {
+
+        }
+    })
+
+</script>
+</body>
+</html>

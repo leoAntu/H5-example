@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+
+    <!--每个组件都是独一份的data挂载数据，互相不干扰-->
+    <my-btn></my-btn>
+    <my-btn></my-btn>
+    <my-btn></my-btn>
+
+
+</div>
+
+<!--注册一个组件-->
+
+    <template id="my-btn">
+        <div>
+            <button @click="count += 1">点击的次数：{{count}}</button>
+        </div>
+    </template>
+
+
+<script src="../js/vue.js"></script>
+<script>
+
+    //实例化组件
+    Vue.component('my-btn',{
+        template: '#my-btn',
+        data() {
+            return {
+                 count: 0
+            }
+        }
+    });
+
+    let vm = new Vue({
+        el: "#app",
+        components: {},
+        data() {
+            return {
+                msg: 'hello world!'
+            }
+        },
+        methods: {},
+        computed: {},
+        watch: {},
+        mounted() {
+
+        },
+        props: {
+            slides: {
+                type: Array,
+                default: []
+            }
+        },
+        filters: {},
+        created() {
+        }
+    })
+
+</script>
+</body>
+</html>

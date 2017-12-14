@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<style>
+
+    *{
+    }
+</style>
+<body>
+
+<button>bind请点击这里</button>
+<br>
+<div>
+    Enter your name: <input type="text"/>
+    <p>请在上面的输入域中点击，使其获得焦点，然后在输入域外面点击，使其失去焦点。</p>
+    <p><button id="btn1">触发输入域的 focus 事件</button></p>
+    <p><button id="btn2">触发输入域的 blur 事件</button></p>
+</div>
+<br>
+<br>
+
+<div>
+
+    <p>在某个域被使用或改变时，它会改变颜色。</p>
+    Enter your name: <input class="field" type="text" />
+    <p>Car:
+        <select class="field" name="cars">
+            <option value="volvo">Volvo</option>
+            <option value="saab">Saab</option>
+            <option value="fiat">Fiat</option>
+            <option value="audi">Audi</option>
+        </select>
+    </p>
+
+</div>
+<br>
+<br>
+
+<div>
+    <button class="dblclick">请双击这里</button>
+    <p>这是一个段落。</p>
+</div>
+<br>
+<br>
+
+<div style="background-color:red" class="delegate">
+    <p>这是一个段落。</p>
+    <button id="btn3">请点击这里</button>
+</div>
+<br>
+<br>
+
+<div>
+    <p>鼠标指针位于： <span></span></p>
+</div>
+<br>
+<br>
+
+<div>
+    <a href="http://w3school.com.cn/">W3School</a>
+    <p>preventDefault() 方法将防止上面的链接打开 URL。</p>
+</div>
+<br>
+<br>
+
+<div>
+
+    <h1>这是一个标题</h1>
+    <h2>这是另一个标题</h2>
+    <p>这是一个段落</p>
+    <button>这是一个按钮</button>
+    <p>标题、段落和按钮元素定义了一个点击事件。如果您触发了事件，下面的 div 会显示出哪个元素触发了该事件。</p>
+    <div id="target"></div>
+
+</div>
+<br>
+<br>
+
+<div>
+    <p id="type">该段落定义了 click、double-click、mouseover 以及 mouseout 事件。如果您触发了其中的一个事件，下面的 div 中会显示出事件的类型。</p>
+    <div id="typeStr"></div>
+</div>
+<br>
+<br>
+
+<div>
+    请随意键入一些字符：<input type="text" />
+    <p>当您在上面的框中键入文本时，下面的 div 会显示键位序号。</p>
+    <p id="key"></p>
+</div>
+<br>
+<br>
+
+<div class="once">
+    <p>这是一个段落。</p>
+    <p>这是另一个段落。</p>
+    <p>请点击 p 元素增加其内容的文本大小。每个 p 元素只会触发一次改事件。</p>
+</div>
+
+<br>
+<br>
+
+<div>
+    <p>窗口大小被调整过 <span id="resize">0</span> 次。</p>
+    <p>请试着重新调整浏览器窗口的大小。</p>
+</div>
+
+<br>
+<br>
+<div>
+    <p>请试着滚动 DIV 中的文本：</p>
+    <div style="width:200px;height:100px;overflow:scroll;" class="scroll">
+        text. text. text. text. text. text. text. text. text. text. text. text. text. text. text. text. text. text. text. text. text. text.
+        <br />
+        <br />
+        text. text. text. text. text. text. text. text. text. text. text. text. text. text. text. text. text. text. text. text. text. text. text. text. text. text. text. text. text. text. text. text. text.
+    </div>
+    <p>滚动了 <span id="scroll">0</span> 次。</p>
+</div>
+<br>
+<br>
+<div>
+    <input type="text" name="FirstName" value="Hello World" />
+    <p>请试着选取输入域中的文本，看看会发生什么。</p>
+</div>
+<br>
+<br>
+<div>
+    <p class="toggle">This is a paragraph.</p>
+    <button id="toggle">toggle</button>
+</div>
+<br>
+<br>
+<div>
+    <p style="font-size:20px;" id="unbind">点击这个段落可以增加其大小。只能增加两次。</p>
+</div>
+<br>
+<br>
+
+
+</body>
+
+<script src="js/jquery-3.2.1.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+
+//        bind
+        $('button').bind('click',function () {
+            $(this).css('color','red')
+        })
+
+//        focus blur
+
+//        当输入域失去焦点 (blur) 时改变其颜色：
+//        将函数绑定到 blur 事件
+        $('input').focus(function () {
+            $(this).css('background-color','#FFFFCC')
+        })
+        $('input').blur(function () {
+            $(this).css('background-color','#D6D6FF')
+        })
+
+//        触发 blur 事件
+
+        $('#btn1').click(function () {
+            $('input').focus()
+        })
+        $('#btn2').click(function () {
+            $('input').blur()
+        })
+
+
+//        change() 方法
+        $('.field').change(function () {
+
+            $(this).css('background-color','red')
+        })
+
+//        dblclick
+
+        $('.dblclick').dblclick(function () {
+            $('p').slideToggle();
+        })
+
+//        delegate
+        $('.delegate').delegate('#btn3','click',function () {
+            $('p').slideToggle();
+        })
+
+//        pageX  pageY属性
+
+        $(document).mousemove(function (e) {
+            $('span').text("x: " + e.pageX + "Y: " + e.pageY);
+        })
+
+
+//        jQuery 事件 - preventDefault() 方法 阻止事件的默认动作。
+        $('a').click(function (e) {
+            e.preventDefault()
+        })
+
+//        jQuery 事件 - target 属性 target 属性规定哪个 DOM 元素触发了该事件。
+        $("p, button, h1, h2").click(function (e) {
+            $('#target').html('点击事件是由一个' + e.target.nodeName + '元素触发')
+        })
+
+//        jQuery 事件 - type 属性
+        $('#type').bind('click dblclick mouseout mouseover',function (e) {
+            $('#typeStr').html('事件：' + e.type)
+        })
+
+//     keydown 和   jQuery 事件 - which 属性 which 属性指示按了哪个键或按钮。
+
+        $('input').keydown(function (e) {
+            $('#key').html("Key: " + event.which);
+
+        })
+
+//        jQuery 事件 - one() 当使用 one() 方法时，每个元素只能运行一次事件处理器函数。
+        $('.once p').one('click',function () {
+            $(this).animate({fontSize : '+=6px'})
+        })
+
+//        jQuery 事件 - resize() 方法当调整浏览器窗口的大小时，发生 resize 事件。
+        var x = 0;
+        $(window).resize(function () {
+            $('#resize').text(x+=1)
+        })
+
+//        jQuery 事件 - scroll() 方法
+        var y = 0
+        $('.scroll').scroll(function () {
+            $('#scroll').text(y+=1)
+        })
+
+//        jQuery 事件 - select() 方法  当 textarea 或文本类型的 input 元素中的文本被选择时，会发生 select 事件。
+        $('input').select(function () {
+            $('input').after("Text marked!")
+        })
+
+//        jQuery 事件 - toggle() 方法 toggle() 方法用于绑定两个或多个事件处理器函数，以响应被选元素的轮流的 click 事件。
+
+//        $('#toggle').toggle(
+//            function () {
+//                $("body").css("background-color","green");
+//            },
+//            function () {
+//                $("body").css("background-color","red");
+//            },
+//            function () {
+//                $("body").css("background-color","yellow");
+//
+//            }
+//        )
+        $("#toggle").click(function () {
+            $(".toggle").toggle(1000)  //毫秒（比如 1500）"slow" "normal" "fast"
+//            $(".toggle").toggle(true) //显示
+//            $(".toggle").toggle(false) //隐藏
+
+        });
+
+
+
+    })
+
+</script>
+</html>

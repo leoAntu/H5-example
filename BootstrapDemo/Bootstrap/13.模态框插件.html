@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,
+maximum-scale=1, user-scalable=no">
+    <!--bootstrap-->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<style>
+    .a {
+        height: 100px;
+        background-color: #eee;
+        border:1px solid #ccc;
+    }
+</style>
+<body>
+
+<!--使用模态框的弹窗组件需要三层 div 容器元素，分别为 modal(模态声明层)、-->
+<!--dialog(窗口声明层)、content(内容层)。在内容层里面，还有三层，分别为 header(头 部)、body(主体)、footer(注脚)。-->
+
+<!-- 模态声明，show 表示显示 -->
+<!--如果想让模态框自动隐藏，然后通过点击按钮弹窗，那么需要做如下操作。 //模态框去掉 show，增加一个 id-->
+
+<!--tabindex  焦点，永远在modal上面-->
+
+<div class="modal fade" id="myModal" tabindex="-1">
+    <!-- 窗口声明 -->
+    <div class="modal-dialog">
+        <!-- 内容声明 -->
+        <div class="modal-content">
+            <!-- 头部 -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+                <h4 class="modal-title">会员登录</h4> </div>
+            <!-- 主体 -->
+            <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-4">1</div>
+                            <div class="col-md-4">1</div>
+                            <div class="col-md-4">1</div>
+                        </div>
+                    </div>
+
+            </div>
+            <!-- 注脚 -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"> 注册</button>
+                <button type="button" class="btn btn-primary"> 登录</button>
+            </div>
+        </div>
+    </div>
+</div>
+    <!--//点击触发模态框显示-->
+    <!--<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">-->
+        <!--点击弹窗-->
+    <!--</button>-->
+
+<button class="btn btn-primary btn-lg" id="btn">
+    点击弹窗
+</button>
+
+<script src="bootstrap/js/jquery-3.2.1.js"></script>
+<script src="bootstrap/js/bootstrap.js"></script>
+<script>
+
+    $(document).ready(function () {
+        //点击显示弹窗
+        console.log("saaaaaaaa")
+        $('#btn').on('click', function () {
+            console.log("saaaaaaaa");
+            $('#myModal').modal('show');
+        });
+
+        $('#myModal').on('show.bs.modal', function () {
+            alert('在 show 方法调用时立即触发!');
+        });
+        $('#myModal').on('shown.bs.modal', function () {
+            alert('在模态框显示完毕后触发!');
+        });
+        $('#myModal').on('hide.bs.modal', function () {
+            alert('在 hide 方法调用时立即触发!');
+        });
+        $('#myModal').on('hiden.bs.modal', function () {
+            alert('在模态框显示完毕后触发!');
+        });
+        $('#myModal').on('loaded.bs.modal', function () {
+            alert('远程数据加载完毕后触发!');
+        });
+    })
+
+</script>
+</body>
+</html>

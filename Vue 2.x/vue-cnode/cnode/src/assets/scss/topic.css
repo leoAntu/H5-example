@@ -1,0 +1,68 @@
+/*
+Error: Undefined variable: "$gap".
+        on line 2 of topic.scss
+
+1: .topic-title {
+2:   padding: $gap;
+3:   margin:$padding;
+4:   font-size: 18px;
+5:   color: $title;
+6:   line-height: 1.5;
+7:   background-color:$colorf0;
+
+Backtrace:
+topic.scss:2
+/Users/dingdongqianbaofuyin/.rvm/gems/ruby-2.4.0/gems/sass-3.5.1/lib/sass/script/tree/variable.rb:49:in `_perform'
+/Users/dingdongqianbaofuyin/.rvm/gems/ruby-2.4.0/gems/sass-3.5.1/lib/sass/script/tree/node.rb:50:in `perform'
+/Users/dingdongqianbaofuyin/.rvm/gems/ruby-2.4.0/gems/sass-3.5.1/lib/sass/tree/visitors/perform.rb:402:in `visit_prop'
+/Users/dingdongqianbaofuyin/.rvm/gems/ruby-2.4.0/gems/sass-3.5.1/lib/sass/tree/visitors/base.rb:36:in `visit'
+/Users/dingdongqianbaofuyin/.rvm/gems/ruby-2.4.0/gems/sass-3.5.1/lib/sass/tree/visitors/perform.rb:162:in `block in visit'
+/Users/dingdongqianbaofuyin/.rvm/gems/ruby-2.4.0/gems/sass-3.5.1/lib/sass/stack.rb:79:in `block in with_base'
+/Users/dingdongqianbaofuyin/.rvm/gems/ruby-2.4.0/gems/sass-3.5.1/lib/sass/stack.rb:135:in `with_frame'
+/Users/dingdongqianbaofuyin/.rvm/gems/ruby-2.4.0/gems/sass-3.5.1/lib/sass/stack.rb:79:in `with_base'
+/Users/dingdongqianbaofuyin/.rvm/gems/ruby-2.4.0/gems/sass-3.5.1/lib/sass/tree/visitors/perform.rb:162:in `visit'
+/Users/dingdongqianbaofuyin/.rvm/gems/ruby-2.4.0/gems/sass-3.5.1/lib/sass/tree/visitors/perform.rb:444:in `block (2 levels) in visit_rule'
+/Users/dingdongqianbaofuyin/.rvm/gems/ruby-2.4.0/gems/sass-3.5.1/lib/sass/tree/visitors/perform.rb:444:in `map'
+/Users/dingdongqianbaofuyin/.rvm/gems/ruby-2.4.0/gems/sass-3.5.1/lib/sass/tree/visitors/perform.rb:444:in `block in visit_rule'
+/Users/dingdongqianbaofuyin/.rvm/gems/ruby-2.4.0/gems/sass-3.5.1/lib/sass/tree/visitors/perform.rb:183:in `with_environment'
+/Users/dingdongqianbaofuyin/.rvm/gems/ruby-2.4.0/gems/sass-3.5.1/lib/sass/tree/visitors/perform.rb:442:in `visit_rule'
+/Users/dingdongqianbaofuyin/.rvm/gems/ruby-2.4.0/gems/sass-3.5.1/lib/sass/tree/visitors/base.rb:36:in `visit'
+/Users/dingdongqianbaofuyin/.rvm/gems/ruby-2.4.0/gems/sass-3.5.1/lib/sass/tree/visitors/perform.rb:162:in `block in visit'
+/Users/dingdongqianbaofuyin/.rvm/gems/ruby-2.4.0/gems/sass-3.5.1/lib/sass/stack.rb:79:in `block in with_base'
+/Users/dingdongqianbaofuyin/.rvm/gems/ruby-2.4.0/gems/sass-3.5.1/lib/sass/stack.rb:135:in `with_frame'
+/Users/dingdongqianbaofuyin/.rvm/gems/ruby-2.4.0/gems/sass-3.5.1/lib/sass/stack.rb:79:in `with_base'
+/Users/dingdongqianbaofuyin/.rvm/gems/ruby-2.4.0/gems/sass-3.5.1/lib/sass/tree/visitors/perform.rb:162:in `visit'
+/Users/dingdongqianbaofuyin/.rvm/gems/ruby-2.4.0/gems/sass-3.5.1/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
+/Users/dingdongqianbaofuyin/.rvm/gems/ruby-2.4.0/gems/sass-3.5.1/lib/sass/tree/visitors/base.rb:52:in `map'
+/Users/dingdongqianbaofuyin/.rvm/gems/ruby-2.4.0/gems/sass-3.5.1/lib/sass/tree/visitors/base.rb:52:in `visit_children'
+/Users/dingdongqianbaofuyin/.rvm/gems/ruby-2.4.0/gems/sass-3.5.1/lib/sass/tree/visitors/perform.rb:171:in `block in visit_children'
+/Users/dingdongqianbaofuyin/.rvm/gems/ruby-2.4.0/gems/sass-3.5.1/lib/sass/tree/visitors/perform.rb:183:in `with_environment'
+/Users/dingdongqianbaofuyin/.rvm/gems/ruby-2.4.0/gems/sass-3.5.1/lib/sass/tree/visitors/perform.rb:170:in `visit_children'
+/Users/dingdongqianbaofuyin/.rvm/gems/ruby-2.4.0/gems/sass-3.5.1/lib/sass/tree/visitors/base.rb:36:in `block in visit'
+/Users/dingdongqianbaofuyin/.rvm/gems/ruby-2.4.0/gems/sass-3.5.1/lib/sass/tree/visitors/perform.rb:190:in `visit_root'
+/Users/dingdongqianbaofuyin/.rvm/gems/ruby-2.4.0/gems/sass-3.5.1/lib/sass/tree/visitors/base.rb:36:in `visit'
+/Users/dingdongqianbaofuyin/.rvm/gems/ruby-2.4.0/gems/sass-3.5.1/lib/sass/tree/visitors/perform.rb:161:in `visit'
+/Users/dingdongqianbaofuyin/.rvm/gems/ruby-2.4.0/gems/sass-3.5.1/lib/sass/tree/visitors/perform.rb:10:in `visit'
+/Users/dingdongqianbaofuyin/.rvm/gems/ruby-2.4.0/gems/sass-3.5.1/lib/sass/tree/root_node.rb:36:in `css_tree'
+/Users/dingdongqianbaofuyin/.rvm/gems/ruby-2.4.0/gems/sass-3.5.1/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
+/Users/dingdongqianbaofuyin/.rvm/gems/ruby-2.4.0/gems/sass-3.5.1/lib/sass/engine.rb:389:in `_render_with_sourcemap'
+/Users/dingdongqianbaofuyin/.rvm/gems/ruby-2.4.0/gems/sass-3.5.1/lib/sass/engine.rb:307:in `render_with_sourcemap'
+/Users/dingdongqianbaofuyin/.rvm/gems/ruby-2.4.0/gems/sass-3.5.1/lib/sass/plugin/compiler.rb:462:in `update_stylesheet'
+/Users/dingdongqianbaofuyin/.rvm/gems/ruby-2.4.0/gems/sass-3.5.1/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
+/Users/dingdongqianbaofuyin/.rvm/gems/ruby-2.4.0/gems/sass-3.5.1/lib/sass/plugin/compiler.rb:209:in `each'
+/Users/dingdongqianbaofuyin/.rvm/gems/ruby-2.4.0/gems/sass-3.5.1/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
+/Users/dingdongqianbaofuyin/.rvm/gems/ruby-2.4.0/gems/sass-3.5.1/lib/sass/plugin.rb:82:in `update_stylesheets'
+/Users/dingdongqianbaofuyin/.rvm/gems/ruby-2.4.0/gems/sass-3.5.1/lib/sass/exec/sass_scss.rb:340:in `watch_or_update'
+/Users/dingdongqianbaofuyin/.rvm/gems/ruby-2.4.0/gems/sass-3.5.1/lib/sass/exec/sass_scss.rb:51:in `process_result'
+/Users/dingdongqianbaofuyin/.rvm/gems/ruby-2.4.0/gems/sass-3.5.1/lib/sass/exec/base.rb:52:in `parse'
+/Users/dingdongqianbaofuyin/.rvm/gems/ruby-2.4.0/gems/sass-3.5.1/lib/sass/exec/base.rb:19:in `parse!'
+/Users/dingdongqianbaofuyin/.rvm/gems/ruby-2.4.0/gems/sass-3.5.1/bin/scss:13:in `<top (required)>'
+/Users/dingdongqianbaofuyin/.rvm/gems/ruby-2.4.0/bin/scss:23:in `load'
+/Users/dingdongqianbaofuyin/.rvm/gems/ruby-2.4.0/bin/scss:23:in `<main>'
+/Users/dingdongqianbaofuyin/.rvm/gems/ruby-2.4.0/bin/ruby_executable_hooks:15:in `eval'
+/Users/dingdongqianbaofuyin/.rvm/gems/ruby-2.4.0/bin/ruby_executable_hooks:15:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Undefined variable: \"$gap\".\A         on line 2 of topic.scss\A \A 1: .topic-title {\A 2:   padding: $gap;\A 3:   margin:$padding;\A 4:   font-size: 18px;\A 5:   color: $title;\A 6:   line-height: 1.5;\A 7:   background-color:$colorf0;"; }

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+
+<div id="div1">
+    <p>This is a paragraph</p>
+    <button id="btn1">获得 p DOM 元素</button>
+    <div></div>
+
+</div>
+
+<br>
+<br>
+
+<div id="div2">
+    <p>点击列表项可获得其相对于同胞元素的 index 位置：</p>
+    <ul>
+        <li>Coffee</li>
+        <li>Milk</li>
+        <li>Soda</li>
+    </ul>
+</div>
+
+
+<br>
+<br>
+
+<div id="div3">
+    <button>输出 li 元素的数目</button>
+    <ul>
+        <li>Coffee</li>
+        <li>Milk</li>
+        <li>Soda</li>
+    </ul>
+</div>
+
+<div id="div4">
+    <button id="btn4">输出每个列表项的值</button>
+    <ul>
+        <li>Coffee</li>
+        <li>Milk</li>
+        <li>Soda</li>
+    </ul>
+</div>
+
+<br>
+<br>
+
+<div id="div5">
+    <button id="btn5">输出 li 元素的数目</button>
+
+    <ul>
+        <li>咖啡</li>
+        <li>牛奶</li>
+        <li>绿茶</li>
+    </ul>
+
+</div>
+</body>
+
+<script src="js/jquery-3.2.1.js"></script>
+<!--<script src="js/jquery-1.10.1.min.js"></script>-->
+<script>
+
+    $(document).ready(function () {
+
+
+//        jQuery DOM 元素方法 - get() 方法   方法获得由选择器指定的 DOM 元素。
+        $("#btn1").click(function(){
+           const x = $("p").get(0);
+           $("#div1 div").text(x.nodeName + ": " + x.innerHTML);
+        });
+
+
+
+//        jQuery DOM 元素方法 - index() 方法 返回指定元素相对于其他指定元素的 index 位置。   如果未找到元素，index() 将返回 -1。
+        $("#div2 li").click(function(){
+            alert($(this).index())
+        });
+
+
+//        jQuery DOM 元素方法 - size() 方法  返回被 jQuery 选择器匹配的元素的数量。  3.2.1 已废弃
+//        $("#div3").click(function(){
+//            alert($("#div3 li").size())
+//        });
+
+
+
+//        jQuery DOM 元素方法 - toArray() 方法    以数组的形式返回 jQuery 选择器匹配的元素。
+        $("#btn4").click(function(){
+            const x = $("#div4 li").toArray()
+            alert(x.length)
+            for(let i = 0; i<x.length; i++){
+                alert(x[i].innerHTML);
+            }
+
+        });
+
+
+        $("#btn5").click(function(){
+            alert($("#div5 li").length)
+        });
+
+    })
+
+</script>
+</html>

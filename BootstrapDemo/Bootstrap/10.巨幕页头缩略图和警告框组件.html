@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,
+maximum-scale=1, user-scalable=no">
+    <!--bootstrap-->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<style>
+    .a {
+        height: 100px;
+        background-color: #eee;
+        border:1px solid #ccc;
+    }
+</style>
+<body >
+
+
+<!--一.巨幕组件 巨幕组件主要是展示网站的关键性区域。 -->
+
+
+<!--//在固定的范围内，有圆角-->
+
+<div class="container">
+    <div class="jumbotron">
+        <h2>网站标题</h2>
+        <p>这是一个学习性的网站</p>
+        <p><a href="#">更多内容</a></p>
+    </div>
+</div>
+
+<br>
+<!--//100%全屏，没有圆角 -->
+<div class="jumbotron">
+    <div class="container">
+        <h2>网站标题</h2>
+        <p>这是一个学习性的网站!</p>
+        <p><a href="#" class="btn btn-default">更多内容</a></p>
+    </div>
+</div>
+
+
+
+<!--二.页头组件-->
+<!--//增加一些空间-->
+<div class="page-header">
+    <h1>大标题 <small>小标题</small></h1>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-6 col-md-3 col-sm-4">
+            <div class="thumbnail">
+                <img src="bootstrap/img/pic.png" alt="">
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-3 col-sm-4"> <div class="thumbnail">
+            <img src="bootstrap/img/pic.png" alt="">
+        </div>
+        </div>
+        <div class="col-xs-6 col-md-3 col-sm-4">
+            <div class="thumbnail">
+                <img src="bootstrap/img/pic.png" alt="">
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-3 col-sm-4"> <div class="thumbnail">
+            <img src="bootstrap/img/pic.png" alt="">
+        </div>
+        </div>
+    </div>
+</div>
+
+
+<!--四.警告框组件-->
+<!--警告框组件是一组预定义消息。-->
+
+
+<!--//基本警告框-->
+
+<div class="alert alert-success">Bootstrap</div>
+<div class="alert alert-info">Bootstrap</div>
+<div class="alert alert-warning">Bootstrap</div>
+<div class="alert alert-danger">Bootstrap</div>
+
+
+<!--/带关闭的警告框-->
+<div class="alert alert-success">
+    Bootstrap
+    <button type="button" class="close" data-dismiss="alert">
+        <span>&times;</span>
+    </button>
+</div>
+
+
+<!--//自动适配的超链接-->
+<div class="alert alert-success">
+    Bootstrap，请到官网
+    <a href="#" class="alert-link">下载</a>
+</div>
+
+<script src="bootstrap/js/jquery-3.2.1.js"></script>
+<script src="bootstrap/js/bootstrap.js"></script>
+</body>
+</html>

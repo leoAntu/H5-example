@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<style>
+
+    *{
+    }
+    .intro
+    {
+        font-size:120%;
+        color:red;
+    }
+    .main
+    {
+        font-size:120%;
+        color:red;
+    }
+</style>
+<body>
+
+<div>
+    <h1>This is a heading</h1>
+    <p>This is a paragraph.</p>
+    <p>This is another paragraph.</p>
+    <button>向第一个 p 元素添加一个类</button>
+
+</div>
+
+<br>
+<br>
+
+<div>
+    <p id="p1">This is a paragraph.</p>
+    <button id="btn1">在每个 p 元素后插入内容</button>
+</div>
+
+<br>
+<br>
+
+<div class="append">
+    <p>This is a paragraph.</p>
+    <p>This is another paragraph.</p>
+    <button id="append">在每个 p 元素的结尾添加内容</button>
+</div>
+<br>
+<br>
+
+<div>
+    <img src="img/img_01.jpg" />
+    <br />
+    <button id="btn2">设置图像的 width 属性</button>
+</div>
+<br>
+<br>
+
+<div>
+    <p id="p2">This is a clone.</p>
+    <button id="btn3">复制每个 p 元素，然后追加到 body 元素</button>
+</div>
+
+<br>
+<br>
+<div>
+    <p id="p4">This is a detach.</p>
+    <button id="btn4">删除 p 元素</button>
+</div>
+
+<br>
+<br>
+<div>
+    <p id="p5">This is a empty.</p>
+    <button id="btn5">删除 p 元素</button>
+</div>
+
+<br>
+<br>
+<div>
+    <h1 id="h1">This is a heading</h1>
+    <p class="intro">This is a paragraph.</p>
+    <p>This is another paragraph.</p>
+    <button id="btn6">检查第一个段落是否拥有类 "intro"</button>
+</div>
+<br>
+<br>
+
+<div>
+    <p id="p7">This is a paragraph.</p>
+    <p>This is another paragraph.</p>
+    <button id="btn7">在每个 p 元素的开头插入内容</button>
+</div>
+
+<br>
+<br>
+<div>
+    <p class="p8">这是一个段落。</p>
+    <p class="p8">这是另一个段落。</p>
+    <button id="btn8">删除所有 p 元素</button>
+</div>
+
+<br>
+<br>
+<div>
+    <h1>这是一个标题</h1>
+    <p style="font-size:120%;color:red">这是一个段落。</p>
+    <p>这是另一个段落。</p>
+    <button id="btn9">删除所有 p 元素的 style 属性</button>
+</div>
+<br>
+<br>
+
+<div>
+    <h1>This is a heading</h1>
+    <p class="intro">This is a paragraph.</p>
+    <p>This is another paragraph.</p>
+    <button id="btn10">从第一个段落中删除类</button>
+</div>
+<br>
+<br>
+
+<div>
+    <p class="p11">This is a paragraph.</p>
+    <p class="p11">This is another paragraph.</p>
+    <button id="btn11">用粗体文本替换所有段落</button>
+</div>
+
+<br>
+<br>
+
+<div>
+    <h1 >This is a heading</h1>
+    <p >This is a paragraph.</p>
+    <p >This is another paragraph.</p>
+    <button id="btn12">切换段落的 "main" 类</button>
+</div>
+
+<br>
+<br>
+<div>
+    <div class="intro">
+        <p class="p13">这是 div 元素中的段落。</p>
+    </div>
+
+    <article class="intro">
+        <p class="p13">这是 article 元素中的段落。</p>
+    </article>
+
+    <button id="btn13">删除每个 p 元素的父元素</button>
+</div>
+
+<br>
+<br>
+<div>
+    <p>Name: <input type="text" name="user" value="Hello World" /></p>
+    <button id="btn14">改变文本域的值</button>
+    <button id="btn15">获取文本域的值</button>
+
+</div>
+
+<br>
+<br>
+<div>
+    <p class="p16">This is a paragraph.</p>
+    <p class="p16">This is another paragraph.</p>
+    <button id="btn16">用 div 包裹每个段落 wrap</button>
+    <button id="btn17">用 div 包裹每个段落 wrapAll</button>
+
+</div>
+
+<br>
+<br>
+<div>
+    <p class="p18">This is a paragraph.</p>
+    <p class="p18">This is another paragraph.</p>
+    <button id="btn18">加粗段落中的文本 wrapInner</button>
+</div>
+</body>
+
+<script src="js/jquery-3.2.1.js"></script>
+
+<script>
+
+    $(function () {
+
+//        addClass() 方法向被选元素添加一个或多个类。 该方法不会移除已存在的 class 属性，仅仅添加一个或多个 class 属性。
+//        提示：如需添加多个类，请使用空格分隔类名。
+
+        $('button').click(function () {
+            $('p:first').addClass("intro")
+        })
+//        $('button').click(function () {
+//            $('p:first').addClass(function (n) {
+//                alert(n)
+//                return "intro"
+//            })
+//        })
+
+//        jQuery 文档操作 - after() 方法 在匹配的元素之后插入内容。 jQuery 文档操作 - before() 方法
+
+
+
+        $("#btn1").click(function () {
+            $('#p1').after("<p>hello world!</p>")
+        })
+//        $("#btn1").click(function () {
+//            $('#p1').after(function () {
+//                return "<p>hello world!</p>"
+//            })
+//        })
+
+//        append()	向匹配元素集合中的每个元素结尾插入由参数指定的内容。append 是添加在指定的元素里面，是父子节点，after是和添加的元素是 ，兄弟节点
+        $("#append").click(function () {
+            $('.append p').append("<b>Hello world!</b>")
+        })
+
+
+//        attr()	设置或返回匹配元素的属性和值。
+        $("#btn2").click(function () {
+            $('img').attr("width",'180px')
+        })
+
+//        clone() 方法生成被选元素的副本，包含子节点、文本和属性。
+        $("#btn3").click(function () {
+            $('#p2').after($("#p2").clone())
+        })
+
+//        jQuery 文档操作 - detach() 方法
+
+//detach() 方法移除被选元素，包括所有文本和子节点。
+//这个方法会保留 jQuery 对象中的匹配的元素，因而可以在将来再使用这些匹配的元素。
+//detach() 会保留所有绑定的事件、附加的数据，这一点与 remove() 不同。
+
+        $("#btn4").click(function () {
+            $("#p4").detach()
+        })
+
+//        jQuery 文档操作 - empty() 方法 empty() 方法从被选元素移除所有内容，包括所有文本和子节点。
+        $("#btn5").click(function () {
+            $("#p5").empty()
+        })
+
+//        jQuery 属性操作 - hasClass() 方法
+        $("#btn6").click(function () {
+            alert($("p:first").hasClass("intro"))
+        })
+
+//        jQuery 文档操作 - prepend() 方法 prepend() 方法在被选元素的开头（仍位于内部）插入指定内容。
+        $("#btn7").click(function () {
+            $("#p7").prepend("<b>Hello world!</b>")
+        })
+
+//        jQuery 文档操作 - remove() 方法
+//remove() 方法移除被选元素，包括所有文本和子节点,包括本身。
+        $("#btn8").click(function () {
+            $(".p8").remove()
+        })
+
+//        jQuery 属性操作 - removeAttr() 方法 必须指定属性才生效
+        $("#btn9").click(function () {
+            $("p").removeAttr('style')
+        })
+
+//        jQuery 属性操作 - removeClass() 方法 必须指定class
+        $("#btn10").click(function () {
+            $("p").removeClass("intro")
+        })
+
+//        jQuery 文档操作 - replaceWith() 方法
+        $("#btn11").click(function () {
+            $('.p11').replaceWith("<a>sdfsdf</a>")
+        })
+
+//        jQuery 属性操作 - toggleClass() 方法
+        $("#btn12").click(function () {
+            $('p').toggleClass('main')
+        })
+
+//        jQuery 文档操作 - unwrap() 方法 unwrap() 方法删除被选元素的父元素。
+        $("#btn13").click(function () {
+            $('.p13').unwrap();
+        })
+
+//        jQuery 属性操作 - val() 方法
+        $("#btn14").click(function () {
+            $(':text').val("hello kitty")
+        })
+        $("#btn15").click(function () {
+            alert($(':text').val())
+        })
+
+//        jQuery 文档操作 - wrap() 方法 wrap() 方法把每个被选元素放置在指定的 HTML 内容或元素中。
+        $("#btn16").click(function () {
+            $(".p16").wrap("<div class='intro'></div>")
+        })
+
+//        jQuery 文档操作 - wrapAll() 方法 把选中的标签全放在指定的div中。 wrap每一个标签都有一个div父标签
+        $("#btn17").click(function () {
+            $(".p16").wrapAll("<div class='intro'></div>")
+        })
+
+//        jQuery 文档操作 - wrapInner() 方法 将选中的标签里面的内容或元素 用b标签包起来
+        $("#btn18").click(function () {
+            $(".p18").wrapInner("<b></b>")
+        })
+    })
+
+
+</script>
+</html>

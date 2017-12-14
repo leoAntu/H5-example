@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+
+
+<div id="div1">
+    <button id="btn1">把数据添加到 div 元素</button><br />
+    <button id="btn2">获取已添加到 div 元素的数据</button>
+    <br>
+    <button id="btn3">removeData() 方法</button>
+
+    <div></div>
+
+</div>
+
+</body>
+
+<script src="js/jquery-3.2.1.js"></script>
+<script>
+
+    $(document).ready(function () {
+
+
+//        jQuery 数据 - data() 方法  向被选元素附加数据，或者从被选元素获取数据。
+        $("#btn1").click(function () {
+            $("#div1 div").data("greeting","hello world")
+        })
+
+        $("#btn2").click(function () {
+            alert($("#div1 div").data("greeting"))
+        })
+
+        $("#btn3").click(function () {
+            $("#div1 div").removeData("greeting")
+        })
+    })
+
+</script>
+</html>

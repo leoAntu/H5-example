@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,
+maximum-scale=1, user-scalable=no">
+    <!--bootstrap-->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<style>
+    .a {
+        height: 100px;
+        background-color: #eee;
+        border:1px solid #ccc;
+    }
+</style>
+<body >
+
+<!--中等屏幕大小-->
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-1 a">1</div>
+        <div class="col-md-1 a">2</div>
+        <div class="col-md-1 a">3</div>
+        <div class="col-md-1 a">4</div>
+        <div class="col-md-1 a">5</div>
+        <div class="col-md-1 a">6</div>
+        <div class="col-md-1 a">7</div>
+        <div class="col-md-1 a">8</div>
+        <div class="col-md-1 a">9</div>
+        <div class="col-md-1 a">10</div>
+        <div class="col-md-1 a">11</div>
+        <div class="col-md-1 a">12</div>
+    </div>
+    <div class="row">
+        <div class="col-md-9 a">9</div>
+        <div class="col-md-3 a">3</div>
+    </div>
+</div>
+
+<br>
+
+<!--不同屏幕下显示不同的栅格-->
+<!--屏幕从大到小不同的显示-->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 a">large 3</div>
+
+        </div>
+    </div>
+
+<br>
+
+<!--列偏移-->
+<div class="container">
+    <div class="row">
+        <div class="col-md-7 a">7</div>
+        <div class="col-md-4 col-md-offset-1 a">4</div>
+
+    </div>
+</div>
+
+<br>
+
+<!--栅格嵌套-->
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-9 a" style="padding: 0px">
+            <div class="col-md-4 a">4</div>
+            <div class="col-md-4 a">4</div>
+            <div class="col-md-4 a">4</div>
+        </div>
+        <div class="col-md-3 a">3</div>
+    </div>
+
+</div>
+
+<br>
+<!--//可以把两个列交换位置，push 向左移动，pull 向右移动-->
+<div class="container">
+    <div class="row">
+        <div class="col-md-9 col-md-push-3 a">9</div>
+        <div class="col-md-3 col-md-pull-9 a">3</div>
+    </div>
+
+</div>
+<script src="bootstrap/js/jquery-3.2.1.js"></script>
+<script src="bootstrap/js/bootstrap.js"></script>
+</body>
+</html>

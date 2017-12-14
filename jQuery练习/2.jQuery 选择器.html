@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<style>
+
+    *{
+    }
+</style>
+<body>
+
+<h2>This is a heading</h2>
+
+<div>
+    <p class="intro">This is a paragraph.</p>
+    <p id="intro">This is another paragraph.</p>
+    <p >This is another paragraph.</p>
+    <p >This is another paragraph.</p>
+</div>
+
+
+
+
+</body>
+
+<script src="js/jquery-3.2.1.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+
+        $('p').css('background-color','red')
+        $('.intro').css('background-color','green')
+        $('#intro').css('background-color','green')
+
+
+        $('p:first').css('background-color','red')
+        $('p:last').css('background-color','red')
+
+//        所有偶数
+        $('p:even').css('background-color','orange')
+//        所有奇数
+        $('p:odd').css('background-color','red')
+
+        $('div p:eq(1)').css('background-color','green')
+
+
+
+
+    })
+
+</script>
+</html>

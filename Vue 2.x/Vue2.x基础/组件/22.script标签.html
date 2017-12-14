@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+
+    <my-div></my-div>
+
+
+</div>
+
+<!--type="text/template" 必须要申名-->
+<script type="text/template" id="my-div">
+//    <!-- 必须div 包裹-->
+    <div>
+        <p>我是MT</p>
+        <input type="text">
+    </div>
+</script>
+
+
+<script src="../js/vue.js"></script>
+<script>
+
+    //1. 全局实例化组件
+
+    Vue.component('my-div',{
+        template: '#my-div'
+    });
+
+    let vm = new Vue({
+        el: "#app",
+        components: {},
+        data() {
+            return {
+                msg: 'hello world!'
+            }
+        },
+        methods: {},
+        computed: {},
+        watch: {},
+        mounted() {
+
+        },
+        props: {
+            slides: {
+                type: Array,
+                default: []
+            }
+        },
+        filters: {},
+        created() {
+        }
+    })
+
+</script>
+</body>
+</html>

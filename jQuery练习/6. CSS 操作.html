@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<style>
+
+    *{
+        margin: 0;
+        padding: 0;
+    }
+
+</style>
+<body style="width: 2000px">
+
+
+<div>
+    <p class="p1">This is a paragraph.</p>
+    <p class="p1">This is another paragraph.</p>
+    <button id="btn1">改变段落的颜色 单个css设置</button>
+    <button id="btn2">获取第一个p标签的css值</button>
+    <button id="btn3">改变段落的颜色和字条大小等</button>
+</div>
+
+<br>
+<br>
+
+<div style="background-color: orange">
+    <p style="background-color:yellow" class="p4"> This is a paragraph.</p>
+    <button id="btn4">改变高度</button>
+    <button id="btn5">获取高度</button>
+</div>
+<br>
+<br>
+<div style="background-color: red;height: 200px;background-color: palegoldenrod;width: 500px;position:relative;">
+    <p style="position: absolute;" class="p5">本段落的偏移是 <span id="span1">unknown</span> left 和 <span id="span2">unknown</span> top。</p>
+
+    <p style="padding-top: 30px">
+        <button id="btn6">获得 offset</button>
+        <button id="btn7">设置新的偏移</button>
+    </p>
+
+
+</div>
+
+<br>
+<br>
+
+<div style="width: 200px;height: 200px;background-color: #98bf21;position: relative;padding-top: 20px" >
+    <p class="p8" style="background-color: red;">This is a paragraph.</p>
+    <button id="btn8">获得 p 元素的位置坐标</button>
+</div>
+
+<br>
+<br>
+<div style="border:1px solid black;width:100px;height:130px;overflow:auto" id="div1">
+    The longest word in the english dictionary is: pneumonoultramicroscopicsilicovolcanoconiosis.
+</div>
+<button id="btn9">把滚动条的水平位置设置为 100px</button>
+
+<br>
+<br>
+
+<div>
+    <div style="border:1px solid black;width:200px;height:200px;overflow:auto" id="div2">
+        This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text.
+    </div>
+    <button id="btn10">把 scroll top offset 设置为 100px</button>
+    <br />
+    <button id="btn11">获得 scroll top offset</button>
+</div>
+
+<br>
+<br>
+
+<div>
+    <p style="background-color:yellow" id="p12">This is a paragraph.</p>
+    <button id="btn12">改变宽度</button>
+    <button id="btn13">获取宽度</button>
+</div>
+
+</body>
+
+<script src="js/jquery-3.2.1.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+
+//        var winHeight = window.innerHeight;
+//        $("#div1").css('height',winHeight)
+//        window.addEventListener('resize', function(event){
+//            winHeight = window.innerHeight;
+//            $("#div1").css('height',winHeight)
+//        });
+
+//        jQuery CSS 操作 - css() 方法 css() 方法返回或设置匹配的元素的一个或多个样式属性。
+
+        $("#btn1").click(function () {
+            $('.p1').css("color","red")
+        })
+
+        $("#btn2").click(function () {
+            alert($('.p1').css("color")) //必须指定一个css值
+        })
+        //设置多个 CSS 属性/值对
+        $("#btn3").click(function () {
+            $('.p1').css(
+                {
+                    "color":"white",
+                    "background-color":"#98bf21",
+                    "font-family":"Arial",
+                    "font-size":"20px",
+                    "padding":"5px"
+                }
+            )
+        })
+
+//        jQuery CSS 操作 - height() 方法 返回第一个匹配元素的高度。如果不为该方法设置参数，则返回以像素计的匹配元素的高度
+        $("#btn4").click(function () {
+            $('.p4').height(50)
+        })
+
+        $("#btn5").click(function () {
+            alert($('.p4').height())
+        })
+
+//        jQuery CSS 操作 - offset() offset() 方法返回或设置匹配元素相对于文档的偏移（位置）。 top 和 left，以像素计。此方法只对可见元素有效。
+        $("#btn6").click(function () {
+            const x = $('.p5').offset();
+
+            $("#span1").text(x.left);
+            $("#span2").text(x.top);
+        })
+
+        //设置值
+        $("#btn7").click(function () {
+            $('.p5').offset({top:100,left:100});
+        })
+
+
+//        jQuery CSS 操作 - position() 方法 position() 方法返回匹配元素相对于父元素的位置（偏移）。 父元素如果没有定位（除static之外，默认为这），则相对的位置为body，和offset一样
+        $("#btn8").click(function () {
+           const x = $('.p8').position()  //只能获取，不能设置值
+//            const x = $('.p8').offset();
+
+            alert('top:' + x.top + ' left:'+x.left)
+        })
+
+//        jQuery CSS 操作 - scrollLeft() 方法
+        $("#btn9").click(function () {
+//            $('body, html').animate({scrollLeft: 100},1000)  //动画偏移到body left 。直接$('body').scrollLeft(0)不生效
+            $("#div1").scrollLeft(100)
+        })
+
+//        jQuery CSS 操作 - scrollTop() 方法
+        $("#btn10").click(function () {
+//            $('body, html').animate({scrollTop: 100},1000)  //动画偏移到body top 。直接$('body').scrollTop(0)不生效
+            $('#div2').scrollTop(100)
+        })
+
+        $("#btn11").click(function () {
+            alert($('#div2').scrollTop())
+        })
+
+//        jQuery CSS 操作 - width() 方法 width() 方法返回或设置匹配元素的宽度。
+        $("#btn12").click(function () {
+            $("#p12").width(200);  //还可以通过 "50%"，"20em" 来设置
+        })
+        $("#btn13").click(function () {
+            alert($("#p12").width());
+        })
+
+
+
+    })
+
+</script>
+</html>

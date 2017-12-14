@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+
+    <my-com msg="今天要下雨" imgsrc="../img/img_01.jpg"></my-com>
+    <my-com msg="明天出太阳" imgsrc="../img/img_02.jpg"></my-com>
+</div>
+
+
+<!--组件-->
+    <template id="my-com">
+        <div>
+            <h1>{{msg}}</h1>
+            <img :src="imgsrc">
+        </div>
+    </template>
+
+
+<script src="../js/vue.js"></script>
+
+<script>
+
+    <!--注册组件-->
+
+        Vue.component('my-com',{
+            template: '#my-com',
+            props: {
+                msg: '',
+                imgsrc: ''
+            }
+        })
+
+    let vm = new Vue({
+        el: "#app",
+        components: {},
+        data() {
+            return {
+                msg: 'hello world!'
+            }
+        },
+        methods: {},
+        computed: {},
+        watch: {},
+        mounted() {
+
+        },
+        props: {
+            slides: {
+                type: Array,
+                default: []
+            }
+        },
+        filters: {},
+        created() {
+        }
+    })
+
+</script>
+</body>
+</html>

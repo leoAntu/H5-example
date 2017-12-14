@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+
+    <my-slot>
+        <p>今天天气真好</p>
+    </my-slot>
+</div>
+
+<!--template-->
+
+    <template id="my_slot">
+        <div>
+            <h1>插槽的头部</h1>
+            <!--预留一个插槽-->
+            <slot>可以替换任意标签，默认显示提示的内容</slot>
+            <footer>插槽的尾部</footer>
+        </div>
+    </template>
+
+
+<script src="../js/vue.js"></script>
+<script>
+
+    Vue.component('my-slot',{
+        template: "#my_slot"
+    })
+
+    let vm = new Vue({
+        el: "#app",
+        components: {},
+        data() {
+            return {
+                msg: 'hello world!'
+            }
+        },
+        methods: {},
+        computed: {},
+        watch: {},
+        mounted() {
+
+        },
+        props: {
+            slides: {
+                type: Array,
+                default: []
+            }
+        },
+        filters: {},
+        created() {
+        }
+    })
+
+</script>
+</body>
+</html>

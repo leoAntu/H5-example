@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,
+maximum-scale=1, user-scalable=no">
+    <!--bootstrap-->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<style>
+    .a {
+        height: 100px;
+        background-color: #eee;
+        border:1px solid #ccc;
+    }
+</style>
+<body >
+
+<!--一.路径组件 路径组件也叫做面包屑导航。-->
+<ol class="breadcrumb">
+    <li><a href="#">首页</a></li>
+    <li><a href="#">产品列表</a></li>
+    <li class="active"><a href="#">韩版2015羊毛衣</a></li>
+</ol>
+
+<br>
+
+<!--二.分页组件-->
+<!--分页组件可以提供带有展示页面的功能。-->
+
+<!--//设置尺寸，四种 lg、默认、sm 和 xs-->
+<ul class="pagination pagination-lg">
+    <li ><a href="#">&laquo;</a></li>
+    <li class="active"><a href="#">1</a></li>
+    <li class="disabled"><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+    <li><a href="#">&raquo;</a></li>
+</ul>
+
+<br>
+<!--//翻页效果-->
+<ul class="pager">
+    <li><a href="#">上一页</a></li>
+    <li><a href="#">下一页</a></li>
+</ul>
+
+<br>
+<!--//对齐翻页链接-->
+<ul class="pager">
+    <li class="previous disabled"><a href="#">上一页</a></li>
+    <li class="next"><a href="#">下一页</a></li>
+</ul>
+
+<br>
+
+
+<!--三.标签-->
+<!--//在文本后面带上标签-->
+<h3>标签 <span class="label label-default">new</span> </h3>
+
+<!--//不同色调的标签-->
+<h3>标签 <span class="label label-primary">new</span></h3>
+<h3>标签 <span class="label label-success">new</span></h3>
+<h3>标签 <span class="label label-info">new</span></h3>
+<h3>标签 <span class="label label-warning">new</span></h3>
+<h3>标签 <span class="label label-danger">new</span></h3>
+
+<br>
+<!--四.徽章-->
+<!--//未读信息数量徽章-->
+
+<a href="#">信息 <span class="badge">10</span></a>
+
+<!--//按钮中使用徽章-->
+<button class="btn btn-success">
+    提交 <span class="badge">3</span>
+</button>
+
+<br>
+
+<!--//激活状态自动适配色调-->
+
+    <ul class="nav nav-pills">
+        <li class="active"><a href="#">首页 <span class="badge">2</span></a></li>
+        <li><a href="#">资讯</a></li>
+    </ul>
+
+
+<script src="bootstrap/js/jquery-3.2.1.js"></script>
+<script src="bootstrap/js/bootstrap.js"></script>
+</body>
+</html>

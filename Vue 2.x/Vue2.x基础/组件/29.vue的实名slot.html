@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+
+    <my-slot>
+        <p slot="cpu">我就是cpu</p>
+        <p slot="gpu">我就是gpu</p>
+
+    </my-slot>
+
+</div>
+
+<!--template-->
+
+<template id="my_slot">
+    <div>
+        <h1>插槽的头部</h1>
+        <!--预留一个插槽-->
+        <slot name="cpu">这是插cpu的</slot>
+        <slot name="gpu">这是插GPU的</slot>
+        <footer>插槽的尾部</footer>
+    </div>
+</template>
+
+
+<script src="../js/vue.js"></script>
+<script>
+
+    Vue.component('my-slot',{
+        template: "#my_slot"
+    })
+
+    let vm = new Vue({
+        el: "#app",
+        components: {},
+        data() {
+            return {
+                msg: 'hello world!'
+            }
+        },
+        methods: {},
+        computed: {},
+        watch: {},
+        mounted() {
+
+        },
+        props: {
+            slides: {
+                type: Array,
+                default: []
+            }
+        },
+        filters: {},
+        created() {
+        }
+    })
+
+</script>
+</body>
+</html>

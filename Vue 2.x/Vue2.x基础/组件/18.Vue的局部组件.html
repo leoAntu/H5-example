@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+
+    <my-color>
+
+    </my-color>
+</div>
+
+
+<script src="../js/vue.js"></script>
+<script>
+
+    //1.组件构造器
+
+    let Component = Vue.extend({
+
+        template: `
+            <div>
+                <input type="color">
+                 <p>今天已经是冬天了</p>
+            </div>
+
+        `
+    })
+
+
+    let vm = new Vue({
+        el: "#app",
+        components: {
+            'my-color': Component
+        },
+        data() {
+            return {
+                msg: 'hello world!'
+            }
+        },
+        methods: {},
+        computed: {},
+        watch: {},
+        mounted() {
+
+        },
+        props: {
+            slides: {
+                type: Array,
+                default: []
+            }
+        },
+        filters: {},
+        created() {
+        }
+    })
+
+</script>
+</body>
+</html>
