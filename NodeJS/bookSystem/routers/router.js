@@ -1,5 +1,6 @@
 
 var Book = require("../models/book.js")
+var fs = require("fs")
 
 exports.addBook = function (req,res,next) {
 
@@ -45,4 +46,13 @@ exports.doEdit = function (req,res,next) {
 
 
 }
+
+
+exports.showVue = function (req,res,next) {
+
+    fs.readFile(__dirname + "/../dist/index.html",function(err,data){
+        res.writeHead(200, {'content-type': 'text/html'});
+        console.log(data);
+        res.end(data);
+    })}
 
