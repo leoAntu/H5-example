@@ -2,7 +2,7 @@
     <div class="goods">
       <div class="menu-wrapper" ref="menu">
         <ul >
-          <li v-for="(item, index) in goods" :class="{'active': currentIndex === index}" @click="selectMenu(index,$event)">
+          <li v-for="(item, index) in goods" :class="{'active': currentIndex === index}" @click="selectMenu(index,$event)" ref="menuList">
             <!--span之间换行会有空隙-->
             <span class="item">
               <span v-if="item.type > 0" class="icon" :class="myClass[item.type]"></span><span class="name">{{item.name}}</span>
@@ -41,15 +41,19 @@
           </li>
         </ul>
       </div>
+      <shopcart class="shopcart" :deliveryPrice="seller.deliveryPrice" :minPrice="seller.minPrice"></shopcart>
     </div>
 </template>
 
 <script type="text/ecmascript-6">
   const ERR_OK = 0
   import BScroll from "better-scroll"
+  import shopcart from "../shopCart/shopcart.vue"
   export default {
     name: '',
-    components: {},
+    components: {
+      shopcart
+    },
     data () {
       return {
         goods: [],
@@ -85,8 +89,6 @@
           this.listHeight.push(height)
         }
 
-        console.log(this.listHeight)
-
       },
 
       selectMenu(index,event){
@@ -100,6 +102,11 @@
         this.foodsScroll.scrollToElement(el,300)
       },
 
+      followScroll(index) {
+        const elList = this.$refs.menuList
+        const el = elList[index];
+        this.menuScroll.scrollToElement(el,300,0,-100)
+      }
 
 
     },
@@ -110,6 +117,8 @@
           let height2 = this.listHeight[i + 1];
           if (height2 && (this.scrollY >= height1 && this.scrollY < height2)) {
             console.log(i)
+            this.followScroll(i);
+
             return i;
           }
         }
@@ -121,7 +130,7 @@
 
     },
     props: {
-
+        seller: null
     },
     filters: {},
     created () {
@@ -316,4 +325,13 @@
     background-image: url("special_1@2x.png");
   }
 
+
+  .shopcart{
+    position: fixed;
+    z-index: 50;
+    bottom: 0;
+    height: 41px;
+    width:100%;
+
+  }
 </style>

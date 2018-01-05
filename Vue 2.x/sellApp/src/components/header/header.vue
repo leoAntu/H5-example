@@ -74,11 +74,13 @@
 </template>
 
 <script type="text/ecmascript-6">
+  /* eslint-disable quotes,key-spacing,space-before-function-paren */
+
   import Star from "../star/star.vue"
   export default {
     name: '',
     components: {
-      "v-star" : Star
+      'v-star' : Star
     },
     data () {
       return {
