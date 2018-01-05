@@ -20,7 +20,7 @@
 
 <script>
   export default {
-    name: '',
+    name: 'a',
     components: {},
     data () {
       return {
