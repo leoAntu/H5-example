@@ -1,6 +1,6 @@
 <template>
     <div class="goods">
-      <div class="menu-wrapper" ref="menu">
+      <div class="menu-wrapper" id="menu-wrapper" ref="menu">
         <ul >
           <li v-for="(item, index) in goods" :class="{'active': currentIndex === index}" @click="selectMenu(index,$event)" ref="menuList">
             <!--span之间换行会有空隙-->
@@ -33,6 +33,9 @@
                       <span class="rmb">￥</span><span class="price">{{food.price}}</span>
                       <span v-if="food.oldPrice" class="oldPrice">¥{{food.oldPrice}}</span>
                     </div>
+                    <div class="control-wrapper">
+                      <cartcontrol :food="food"></cartcontrol>
+                    </div>
                   </div>
                 </div>
               </li>
@@ -49,10 +52,13 @@
   const ERR_OK = 0
   import BScroll from "better-scroll"
   import shopcart from "../shopCart/shopcart.vue"
+  import cartcontrol from "../cartControl/carControl.vue"
+
   export default {
     name: '',
     components: {
-      shopcart
+      shopcart,
+      cartcontrol
     },
     data () {
       return {
@@ -67,15 +73,21 @@
         this.menuScroll = new BScroll(this.$refs.menu,{
           click: true
         })
+
+        console.log("menuScroll " + this.menuScroll)
+
         this.foodsScroll = new BScroll(this.$refs.foods,{
-          probeType: 3
+          probeType: 3,
+          click: true
         })
+
+        console.log("foodsScroll " + this.foodsScroll)
+
 
         this.foodsScroll.on("scroll",(pos) => {
 //          Math.round  取整数  Math.abs 取绝对值
           this.scrollY = Math.abs(Math.round(pos.y))
         })
-        this.calculateHeight();
       },
 
       calculateHeight() {
@@ -88,16 +100,14 @@
           height += item.clientHeight;
           this.listHeight.push(height)
         }
-
+        console.log(this.listHeight)
       },
 
       selectMenu(index,event){
         if (!event._constructed){
           return;
         }
-
         const  foodList = document.getElementsByClassName("food-list-hook")
-
         let el = foodList[index]
         this.foodsScroll.scrollToElement(el,300)
       },
@@ -130,7 +140,9 @@
 
     },
     props: {
-        seller: null
+        seller: {
+          type: Object
+        }
     },
     filters: {},
     created () {
@@ -139,10 +151,23 @@
 
         if (response.body.errno == ERR_OK) {
           this.goods = response.body.data
-          console.log(this.goods)
-          this.$nextTick(() => {
-            this.initScroll();
+          this.goods.forEach((food)=>{
+            food.foods.forEach((item) => {
+              item.count = 0
+            })
           })
+          console.log(this.goods)
+//          相当于延迟加载
+          setTimeout(()=>{
+            this.initScroll();
+            this.calculateHeight();
+          },200);
+//          偶尔会卡住，
+//          this.$nextTick(() => {
+//            this.initScroll();
+//            this.calculateHeight();
+//          })
+
         }
       }, response => {
 
@@ -224,6 +249,9 @@
     padding: 0px 18px;
   }
 
+  .food {
+    position: relative;
+  }
   .foods-wrapper .food .container{
     display: flex;
     padding: 18px 0px;
@@ -293,6 +321,12 @@
     font-weight: 700;
     line-height: 24px;
     text-decoration: line-through;
+  }
+
+  .control-wrapper{
+    position: absolute;
+    right: 18px;
+    bottom: 12px;
   }
 
   .icon{
