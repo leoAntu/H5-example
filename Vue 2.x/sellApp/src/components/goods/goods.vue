@@ -12,7 +12,7 @@
       </div>
       <div class="foods-wrapper" ref="foods">
         <ul v-if="goods">
-          <li v-for="item in goods" class="food-list-hook">
+          <li v-for="item in goods" class="food-list-hook foodList">
             <div class="title">
               <span >{{item.name}}</span>
             </div>
@@ -34,7 +34,7 @@
                       <span v-if="food.oldPrice" class="oldPrice">¥{{food.oldPrice}}</span>
                     </div>
                     <div class="control-wrapper">
-                      <cartcontrol :food="food"></cartcontrol>
+                      <cartcontrol :food="food" @add="addFood"></cartcontrol>
                     </div>
                   </div>
                 </div>
@@ -44,7 +44,7 @@
           </li>
         </ul>
       </div>
-      <shopcart class="shopcart" :deliveryPrice="seller.deliveryPrice" :minPrice="seller.minPrice"></shopcart>
+      <shopcart class="shopcart" :goods="selectFoods" :deliveryPrice="seller.deliveryPrice" :minPrice="seller.minPrice" ref="shopcart"></shopcart>
     </div>
 </template>
 
@@ -74,15 +74,10 @@
           click: true
         })
 
-        console.log("menuScroll " + this.menuScroll)
-
         this.foodsScroll = new BScroll(this.$refs.foods,{
           probeType: 3,
           click: true
         })
-
-        console.log("foodsScroll " + this.foodsScroll)
-
 
         this.foodsScroll.on("scroll",(pos) => {
 //          Math.round  取整数  Math.abs 取绝对值
@@ -91,7 +86,7 @@
       },
 
       calculateHeight() {
-        const  foodList = document.getElementsByClassName("food-list-hook")
+        const  foodList = document.getElementsByClassName("foodList")
         let height = 0;
         this.listHeight.push(height)
 
@@ -107,7 +102,7 @@
         if (!event._constructed){
           return;
         }
-        const  foodList = document.getElementsByClassName("food-list-hook")
+        const  foodList = document.getElementsByClassName("foodList")
         let el = foodList[index]
         this.foodsScroll.scrollToElement(el,300)
       },
@@ -116,8 +111,18 @@
         const elList = this.$refs.menuList
         const el = elList[index];
         this.menuScroll.scrollToElement(el,300,0,-100)
-      }
+      },
 
+      addFood(el){
+        this.drop(el)
+      },
+
+      drop(el){
+//        为了购物车小球动画优化，不卡顿，异步执行
+        this.$nextTick(()=>{
+          this.$refs.shopcart.drop(el);
+        })
+      }
 
     },
     computed: {
@@ -126,13 +131,24 @@
           let height1 = this.listHeight[i];
           let height2 = this.listHeight[i + 1];
           if (height2 && (this.scrollY >= height1 && this.scrollY < height2)) {
-            console.log(i)
             this.followScroll(i);
 
             return i;
           }
         }
         return 0;
+      },
+
+      selectFoods(){
+        let foods = [];
+        this.goods.forEach((good) => {
+          good.foods.forEach((food) => {
+            if (food.count) {
+              foods.push(food);
+            }
+          })
+        })
+        return foods
       }
     },
     watch: {},
@@ -151,11 +167,6 @@
 
         if (response.body.errno == ERR_OK) {
           this.goods = response.body.data
-          this.goods.forEach((food)=>{
-            food.foods.forEach((item) => {
-              item.count = 0
-            })
-          })
           console.log(this.goods)
 //          相当于延迟加载
           setTimeout(()=>{
@@ -360,12 +371,4 @@
   }
 
 
-  .shopcart{
-    position: fixed;
-    z-index: 50;
-    bottom: 0;
-    height: 41px;
-    width:100%;
-
-  }
 </style>
