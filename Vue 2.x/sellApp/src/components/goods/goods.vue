@@ -18,23 +18,23 @@
             </div>
 
             <ul v-if="item.foods">
-              <li v-for="food in item.foods" class="food">
+              <li v-for="(f,index) in item.foods" class="food" @click="selectFood(f,index,$event)">
                 <div class="container">
                   <div class="foodIcon">
-                    <img :src="food.icon">
+                    <img :src="f.icon">
                   </div>
                   <div class="content">
-                    <h1 class="name">{{food.name}}</h1>
-                    <p class="description">{{food.description}}</p>
+                    <h1 class="name">{{f.name}}</h1>
+                    <p class="description">{{f.description}}</p>
                     <div class="sell">
-                      <span>月售{{food.sellCount}}份</span><span class="rating">好评率{{food.rating}}%</span>
+                      <span>月售{{f.sellCount}}份</span><span class="rating">好评率{{f.rating}}%</span>
                     </div>
                     <div>
-                      <span class="rmb">￥</span><span class="price">{{food.price}}</span>
-                      <span v-if="food.oldPrice" class="oldPrice">¥{{food.oldPrice}}</span>
+                      <span class="rmb">￥</span><span class="price">{{f.price}}</span>
+                      <span v-if="f.oldPrice" class="oldPrice">¥{{f.oldPrice}}</span>
                     </div>
                     <div class="control-wrapper">
-                      <cartcontrol :food="food" @add="addFood"></cartcontrol>
+                      <cartcontrol :food="f" @add="addFood"></cartcontrol>
                     </div>
                   </div>
                 </div>
@@ -45,6 +45,7 @@
         </ul>
       </div>
       <shopcart class="shopcart" :goods="selectFoods" :deliveryPrice="seller.deliveryPrice" :minPrice="seller.minPrice" ref="shopcart"></shopcart>
+      <food :food="selectedFood" ref="food" @add="addFood"></food>
     </div>
 </template>
 
@@ -53,22 +54,36 @@
   import BScroll from "better-scroll"
   import shopcart from "../shopCart/shopcart.vue"
   import cartcontrol from "../cartControl/carControl.vue"
+  import food from "../food/food.vue"
 
   export default {
     name: '',
     components: {
       shopcart,
-      cartcontrol
+      cartcontrol,
+      food
     },
     data () {
       return {
         goods: [],
         myClass: ['decrease','discount','special','invoice','guarantee'],
         listHeight: [],
-        scrollY: 0
+        scrollY: 0,
+        selectedFood: null
       }
     },
     methods: {
+      selectFood(food,index,event) {
+        //        判断事件是不是better-scroll派生的，如果不是就阻止。主要为了原生的better-scroll冲突
+        if (!event._constructed){
+          return;
+        }
+        console.log(food)
+        console.log(index)
+        this.selectedFood = food
+//        父组件可以直接调用子组件的方法和data
+        this.$refs.food.show()
+      },
       initScroll() {
         this.menuScroll = new BScroll(this.$refs.menu,{
           click: true
@@ -99,6 +114,7 @@
       },
 
       selectMenu(index,event){
+        //        判断事件是不是better-scroll派生的，如果不是就阻止。主要为了原生的better-scroll冲突
         if (!event._constructed){
           return;
         }
@@ -369,6 +385,7 @@
   .special{
     background-image: url("special_1@2x.png");
   }
+
 
 
 </style>

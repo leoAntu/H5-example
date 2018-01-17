@@ -1,13 +1,13 @@
 <template>
     <div class="cart-control">
       <transition name="move">
-        <div class="decrese" v-show="food.count>0" @click="decreaseCart($event)">
+        <div class="decrese" v-show="food.count>0" @click.stop.prevent="decreaseCart($event)">
           <span class="inner inner_move icon-remove_circle_outline"></span>
         </div>
       </transition>
       <div class="number" v-show="food.count>0">{{food.count}}</div>
 
-      <div class="add icon-add_circle" @click="addFood($event)"></div>
+      <div class="add icon-add_circle" @click.stop.prevent="addFood($event)"></div>
     </div>
 </template>
 
@@ -22,10 +22,11 @@
     },
     methods: {
       addFood(event){
+        console.log(event)
+//        判断事件是不是better-scroll派生的，如果不是就阻止。主要为了原生的better-scroll冲突
         if (!event. _constructed) {
           return;
         }
-
         console.log(event);
 
         if (!this.food.count) {

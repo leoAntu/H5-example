@@ -13,7 +13,8 @@
           <div class="des">另需要配送费¥{{deliveryPrice}}元</div>
         </div>
       </div>
-      <div class="right" :class="{'enough':this.totalPrice >= this.minPrice}">
+      <!--@click.stop.prevent  阻止点击事件冒泡-->
+      <div class="right" :class="{'enough':this.totalPrice >= this.minPrice}" @click.stop.prevent="pay">
         <span class="default">{{payDes}}</span>
       </div>
       <div class="ball-container">
@@ -31,12 +32,13 @@
       <div class="shop-list" v-show="listShow">
         <div class="list-header">
           <h1 class="title">购物车</h1>
-          <h1 class="empty">清空</h1>
+          <h1 class="empty" @click="cleanShop">清空</h1>
         </div>
-        <div class="list-content">
-          <ul class="content">
+        <div class="list-content" ref="listContent">
+          <ul >
             <li v-for="good in goods" class="food">
-              <span class="name">发顺丰</span>
+              <span class="name">{{good.name}}</span>
+              <span class="price">¥{{good.price * good.count}}</span>
               <div class="control-wrapper">
                 <cartcontrol :food="good" @add="addFood"></cartcontrol>
               </div>
@@ -46,12 +48,18 @@
       </div>
 
     </transition>
+
+    <transition name="fade">
+      <div class="list-mask" v-show="listShow" @click="listMask"></div>
+    </transition>
+
   </div>
 
 </template>
 
 <script>
   import cartcontrol from "../cartControl/carControl.vue"
+  import BScroll from "better-scroll"
 
   export default {
     name: 'a',
@@ -82,8 +90,24 @@
       }
     },
     methods: {
+      pay(){
+        if (this.totalPrice < this.minPrice){ return }
+        alert(`结算金额: ${this.totalPrice}`)
+      },
+      listMask(){
+        this.fold = true;
+      },
+      cleanShop(){
+        console.log('cleanShop')
+        this.goods.forEach((good)=>{
+          good.count = 0
+        })
+      },
       addFood(el){
-        console.log(el)
+        //        为了购物车小球动画优化，不卡顿，异步执行
+        this.$nextTick(()=>{
+          this.drop(el);
+        })
       },
       toggleList(){
 
@@ -94,7 +118,7 @@
         this.fold = !this.fold;
       },
       drop(el){
-        console.log( el)
+        console.log( "~~~~~~~~~~~~~~")
         for (let i=0;i<this.balls.length;i++){
           let ball = this.balls[i];
           if (!ball.show){
@@ -112,6 +136,7 @@
           let ball = this.balls[count];
           if (ball.show){
             let rect = ball.el.getBoundingClientRect();
+            console.log(rect)
             let x = rect.left - 32;
             let y = -(window.innerHeight - rect.top - 22);
             el.style.display = '';
@@ -189,6 +214,22 @@
           return false;
         }
         let show = !this.fold;
+        if (show){
+//          等DOM加载完执行
+          this.$nextTick(()=>{
+            if (!this.bScroll){
+              console.log(this.$refs.listContent)
+              this.bScroll = new BScroll(this.$refs.listContent,{
+                click: true
+              })
+              console.log(this.bScroll)
+            } else  {
+              this.bScroll.refresh()
+              console.log(this.bScroll)
+            }
+
+          })
+        }
         return show;
       }
     },
@@ -345,11 +386,10 @@
     position: absolute;
     left: 0;
     top: 0;
-    max-height: 217px;
     width: 100%;
     z-index: -1;
     transform: translate3d(0,-100%,0);
-    overflow: hidden;
+
   }
 
   .list-header {
@@ -378,18 +418,33 @@
 
 
   .list-content{
-    padding: 12px;
     position: relative;
     background-color: rgb(255,255,255);
+    max-height: 200px;
+    overflow: hidden;
   }
-  .list-content .content{
+  .list-content ul{
     background-color: rgb(255,255,255);
-    border-bottom: 1px solid rgba(7,17,27,0.1);
     line-height: 48px;
+    padding: 12px;
 
   }
-  .content .food{
+  ul .food{
     position: relative;
+    border-bottom: 1px solid rgba(7,17,27,0.1);
+
+  }
+
+  .content .price{
+    display: inline-block;
+    position: absolute;
+    right: 90px;
+    bottom: 12px;
+    font-size: 14px;
+    color: red;
+    line-height: 24px;
+    font-weight: 700;
+
   }
   .control-wrapper{
     position: absolute;
@@ -404,6 +459,27 @@
   }
   .move-enter, .move-leave-active {
     transform: translate3d(0,0,0);
+  }
+
+  .list-mask{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: -20;
+    /*添加模糊效果*/
+    filter: blur(10px);
+    background-color: rgba(7,17,27,0.6);
+    opacity: 1;
+  }
+
+  .fade-enter-active, .fade-leave-active{
+    transition: all 0.4s linear;
+  }
+  .fade-enter, .fade-leave-active {
+    opacity: 0;
+    background: rgba(7, 17, 27, 0)
   }
 
 </style>

@@ -1,37 +1,280 @@
 <template>
-    <div>
-      sflka
+    <div class="seller" ref="seller">
+      <div class="seller-content">
+        <div class="seller-header">
+          <div class="header-top">
+            <h1 class="name">{{seller.name}}</h1>
+            <div class="header-wrapper">
+              <star :size="36" :score="seller.score" class="star"></star>
+              <span class="ratingCount">({{seller.ratingCount}})</span>
+              <span class="sellCount">月售{{seller.sellCount}}单</span>
+            </div>
+          </div>
+          <div class="header-bottom">
+            <div class="left">
+              <div class="title">起送价</div>
+              <div class="number">{{seller.minPrice}}<span>元</span></div>
+            </div>
+            <div class="middle">
+              <div class="title">商家配送</div>
+              <div class="number">{{seller.deliveryPrice}}<span>元</span></div>
+            </div>
+            <div class="right">
+              <div class="title">平均配送时间</div>
+              <div class="number">{{seller.deliveryTime}}<span>分钟</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="split"></div>
+        <div class="seller-board">
+          <div class="header">
+            <h1 class="title">公告与活动</h1>
+            <p class="content">{{seller.bulletin}}</p>
+          </div>
+          <ul class="supports" v-if="seller.supports">
+            <li v-for="(item,index) in seller.supports" >
+              <span class="icon" :class="myClass[item.type]"></span>
+              <span class="text">{{item.description}}</span>
+            </li>
+          </ul>
+        </div>
+        <div class="split"></div>
+        <div CLASS="live-action">
+          <h1 class="title">商家实景</h1>
+          <div class="img">
+            <img v-for="pic in seller.pics" :src="pic" width="120" height="90"/>
+          </div>
+        </div>
+      </div>
     </div>
 </template>
 
 <script type="text/ecmascript-6">
+  import BScroll from "better-scroll"
+  import star from "../star/star.vue"
+
   export default {
     name: '',
-    components: {},
+    components: {
+      star
+    },
     data () {
       return {
-        msg: '<span>hello</span>'
+        myClass: ['decrease','discount','special','invoice','guarantee']
       }
     },
-    methods: {},
-    computed: {},
-    watch: {},
-    mounted () {
+    methods: {
+      initPics(){
 
+      }
+    },
+    computed: {},
+    watch: {
+      'seller'(){
+
+      }
+    },
+    mounted () {
+      this.$nextTick(()=>{
+        if (!this.scroll){
+          this.scroll = new BScroll(this.$refs.seller,{
+            click: true
+          })
+        } else  {
+          this.scroll.refresh()
+        }
+      })
     },
     props: {
-      slides: {
-        type: Array,
-        default: []
+      seller:{
+        type: Object,
+        default(){
+          return null
+        }
       }
     },
     filters: {},
-    created () {}
+    created () {
+    }
   }
 </script>
 
 <style scoped>
-    div {
-        background-color: #ff0000;
-    }
+  .seller{
+    position: absolute;
+    overflow: hidden;
+    top: 177px;
+    bottom: 0px;
+    width: 100%;
+  }
+  .seller-content{
+    width: 100%;
+    /*height: 1000px;*/
+    background-color: white;
+  }
+  .seller-header{
+    font-size: 0px;
+  }
+  .header-top{
+    margin: 0px 18px;
+    border-bottom: 1px solid rgba(7,17,27,0.1);
+    padding: 18px 0px;
+  }
+  .header-top .name{
+    font-size: 14px;
+    color: rgb(7,17,27);
+    line-height: 14px;
+  }
+  .header-wrapper{
+    margin-top: 8px;
+  }
+  .header-top .star{
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .header-top .ratingCount{
+    display: inline-block;
+    font-size: 10px;
+    color: rgb(77,85,93);
+    /*line-height: 18px;*/
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  .header-top .sellCount{
+    display: inline-block;
+    font-size: 10px;
+    color: rgb(77,85,93);
+    /*line-height: 18px;*/
+    margin-left: 12px;
+    vertical-align: middle;
+  }
+  .header-bottom{
+    padding: 18px 0px;
+    display: flex;
+    font-size: 10px;
+    text-align: center;
+  }
+  .header-bottom .left{
+      flex: 1;
+    border-right: 1px solid rgba(7,17,27,0.1);
+  }
+
+  .header-bottom .title{
+    font-size: 10px;
+    color: rgb(147,153,159);
+    line-height: 10px;
+  }
+  .header-bottom .middle{
+    flex: 1;
+    border-right: 1px solid rgba(7,17,27,0.1);
+
+  }
+  .header-bottom .right{
+    flex: 1;
+  }
+  .header-bottom .number{
+    margin-top: 8px;
+    font-size: 24px;
+    font-weight: 200;
+    color: rgb(7,17,27);
+    line-height: 24px;
+  }
+  .header-bottom span{
+    font-size: 10px;
+    font-weight: normal;
+    color: rgb(7,17,27);
+    line-height: 10px;
+  }
+  .split{
+    width: 100%;
+    height: 18px;
+    background-color: #f3f5f7;
+    border-bottom: 2px solid rgba(7,17,27,0.1);
+    border-top: 2px solid rgba(7,17,27,0.1);
+  }
+
+  .seller-board{
+    margin: 0px 18px;
+  }
+
+  .seller-board .header{
+    border-bottom: 1px solid rgba(7,17,27,0.1);
+  }
+
+  .seller-board .header .title{
+    margin-top: 18px;
+    font-size: 14px;
+    color: rgb(7,17,27);
+    line-height: 14px;
+  }
+
+  .seller-board .header .content{
+    padding: 8px 12px 16px 12px;
+    font-size: 12px;
+    font-weight: 200;
+    color: rgb(240,20,20);
+    line-height: 24px;
+    vertical-align: middle;
+  }
+
+  .icon{
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 2px;
+    margin-left: 2px;
+    background-repeat: no-repeat;
+    background-size: 12px 12px;
+    vertical-align: middle;
+
+  }
+
+  .decrease{
+    background-image: url("decrease_1@2x.png");
+  }
+
+  .discount{
+    background-image: url("discount_1@2x.png");
+  }
+
+  .guarantee{
+    background-image: url("guarantee_1@2x.png");
+  }
+
+  .invoice{
+    background-image: url("invoice_1@2x.png");
+  }
+  .special{
+    background-image: url("special_1@2x.png");
+  }
+  .supports li{
+    border-bottom: 1px solid rgba(7,17,27,0.1);
+    padding: 16px 12px 16px 12px;
+  }
+  .supports .text{
+    font-size: 12px;
+    font-weight: 200;
+    color: rgb(7,17,27);
+    line-height: 16px;
+    vertical-align: middle;
+  }
+  .live-action{
+    padding: 18px 0px 18px 18px;
+  }
+  .live-action .title{
+    font-size: 14px;
+    color: rgb(7,17,27);
+    line-height: 14px;
+  }
+  .live-action .img{
+    margin-top: 12px;
+    /*height: 60px;*/
+    /*width: 500px;*/
+    background-color: red;
+    overflow: auto;
+  }
+  .live-action img{
+    display: inline-block;
+    margin-right: 12px;
+  }
 </style>
