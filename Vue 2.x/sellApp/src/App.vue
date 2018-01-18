@@ -15,7 +15,10 @@
       </div>
     </div>
 
-    <router-view :seller="seller"> </router-view>
+    <!--加载过的路由，不会反复加载网络请求-->
+    <keep-alive>
+      <router-view :seller="seller"> </router-view>
+    </keep-alive>
 
 
   </div>
@@ -23,7 +26,7 @@
 
 <script type="text/ecmascript-6">
   import header from "./components/header/header.vue"
-
+  import { urlParse } from './common/js/util'
   const ERR_OK = 0;
 
   export default {
@@ -33,17 +36,21 @@
     },
     data () {
       return {
-        seller: null
+        seller: {
+          id: (() => {
+            let queryParam = urlParse();
+            return queryParam.id;
+          })()
+        }
       }
     },
     methods: {
 
       requestSeller() {
-
-        this.$http.get('/apis/api/seller').then(response => {
+        this.$http.get('/apis/api/seller?id=' + this.seller.id).then(response => {
 
           if (response.body.errno == ERR_OK) {
-            this.seller = response.body.data
+            this.seller = Object.assign({}, this.seller, response.body.data);
 
           }
         }, response => {
@@ -52,11 +59,13 @@
         });
       }
     },
-    computed: {},
+    computed: {
+    },
     watch: {},
     mounted () {
       this.requestSeller();
-
+      let obj = urlParse();
+      console.log(obj)
     },
     props: {
 

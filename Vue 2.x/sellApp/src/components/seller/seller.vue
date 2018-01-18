@@ -24,6 +24,10 @@
               <div class="number">{{seller.deliveryTime}}<span>分钟</span></div>
             </div>
           </div>
+          <div class="favorite" @click="toggleFavorite($event)">
+            <span class="icon-favorite" :class="{'active':favorite}"></span>
+            <span class="text">{{favoriteText}}</span>
+          </div>
         </div>
         <div class="split"></div>
         <div class="seller-board">
@@ -39,11 +43,23 @@
           </ul>
         </div>
         <div class="split"></div>
-        <div CLASS="live-action">
+        <div class="live-action">
           <h1 class="title">商家实景</h1>
-          <div class="img">
-            <img v-for="pic in seller.pics" :src="pic" width="120" height="90"/>
+          <div class="pics" ref="picWrapper">
+            <ul class="pic-list" ref="picList">
+              <li class="pic-item" v-for="pic in seller.pics">
+                <img :src="pic" alt="" width="120" height="90">
+              </li>
+            </ul>
           </div>
+        </div>
+        <div class="split"></div>
+
+        <div class="info">
+          <h1 class="title border-1px">商家信息</h1>
+          <ul>
+            <li class="info-item" v-for="info in seller.infos">{{info}}</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -52,7 +68,7 @@
 <script type="text/ecmascript-6">
   import BScroll from "better-scroll"
   import star from "../star/star.vue"
-
+  import { saveToLocal, loadFromLocal } from "../../common/js/store"
   export default {
     name: '',
     components: {
@@ -60,15 +76,27 @@
     },
     data () {
       return {
-        myClass: ['decrease','discount','special','invoice','guarantee']
+        myClass: ['decrease','discount','special','invoice','guarantee'],
+        favorite : (()=>{
+          return loadFromLocal(this.seller.id,"favorite",false)
+        })()
       }
     },
     methods: {
-      initPics(){
-
+      toggleFavorite(event){
+        if (!event._constructed){
+          return
+        }
+        this.favorite = !this.favorite
+        console.log(this.seller.id)
+        saveToLocal(this.seller.id,'favorite',this.favorite)
       }
     },
-    computed: {},
+    computed: {
+      favoriteText(){
+        return this.favorite ? "已收藏" : "收藏"
+      }
+    },
     watch: {
       'seller'(){
 
@@ -82,6 +110,23 @@
           })
         } else  {
           this.scroll.refresh()
+        }
+
+        if (this.seller.pics){
+//          要重新计算ul的宽度，才能滚动
+          let picW = 120;
+          let margin = 6;
+          let width = (picW + margin) * this.seller.pics.length
+          this.$refs.picList.style.width = width + 'px';
+          if (!this.picScroll) {
+            this.picScroll = new BScroll(this.$refs.picWrapper, {
+              scrollX: true,
+              eventPassthrough: 'vertical',
+              click: true
+            });
+          } else {
+            this.picScroll.refresh();
+          }
         }
       })
     },
@@ -266,15 +311,71 @@
     color: rgb(7,17,27);
     line-height: 14px;
   }
-  .live-action .img{
+
+  .pics{
     margin-top: 12px;
-    /*height: 60px;*/
-    /*width: 500px;*/
-    background-color: red;
-    overflow: auto;
+    width: 100%;
+    overflow: hidden;
+    /*不被换行*/
+    white-space: nowrap;
   }
-  .live-action img{
+
+  .pic-list {
+    font-size: 0;
+
+  }
+  .pic-item{
     display: inline-block;
-    margin-right: 12px;
+    margin-right: 6px;
+    width: 120px;
+    height: 90px;
   }
+
+  .info{
+    padding: 18px 18px 0 18px;
+    color: rgb(7,17,27);
+  }
+  .info .title{
+    line-height: 14px;
+    border-bottom:1px solid rgba(7, 17, 27, 0.1);
+    font-size: 14px;
+  }
+
+  .info-item{
+    padding: 16px 12px;
+    line-height: 16px;
+    border-bottom:1px solid rgba(7, 17, 27, 0.1);
+    font-size: 12px
+  }
+  .info-item:last-child{
+    border-bottom: none;
+  }
+
+  .favorite{
+    position: absolute;
+    width: 50px;
+    right: 11px;
+    top: 18px;
+    text-align: center;
+
+  }
+  .icon-favorite{
+    display: block;
+    margin-bottom: 4px;
+    line-height: 24px;
+    font-size: 24px;
+    color: #d4d6d9 ;
+  }
+
+  .favorite .active{
+    color: rgb(240, 20, 20)
+  }
+
+  .favorite .text{
+    line-height: 10px;
+    font-size: 10px;
+    color: rgb(77, 85, 93);
+  }
+
+
 </style>
